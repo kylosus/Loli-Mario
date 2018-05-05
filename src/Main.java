@@ -5,6 +5,7 @@ import acm.program.GraphicsProgram;
 
 import java.awt.Color;
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseListener;
 
 public class Main extends GraphicsProgram {
 
@@ -63,7 +64,7 @@ public class Main extends GraphicsProgram {
 //		QuestionBlock block = new QuestionBlock();
 //		add(block, 200, 200);
 
-//		add(new StartMenu());
+		add(new StartMenu(getWidth(), getHeight()));
 
 		while (!isGameOver()) {
 			System.out.println("");
@@ -134,6 +135,7 @@ public class Main extends GraphicsProgram {
 	public void init() {
 		addKeyListeners();
 		addMouseListeners();
+		setSize(1920, 580);
 	}
 
 	public void keyPressed(KeyEvent e) {
