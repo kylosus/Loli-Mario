@@ -52,16 +52,16 @@ public class Main extends GraphicsProgram {
 
 		foreground = new Foreground(getWidth(), getHeight());
 		background = new Background(WIDTH, HEIGHT);
-		add(background);
-		add(foreground);
-		add(character);
+
 		StartMenu = new StartMenu(getWidth(), getHeight());
 		add(StartMenu);
 
 		while (isInMenu) {
 			System.out.println("In in Menu");
 		}
-
+		add(background);
+		add(foreground);
+		add(character);
 		removeMenu();
 
 		CHARACTER_SPEED = character.Speed;

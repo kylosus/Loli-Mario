@@ -37,7 +37,7 @@ public class StartMenu extends GCompound {
 	private MenuItem Play_Button = new MenuItem(Core.Menu_Button_regular, Core.Menu_Button_hovered, "Play", new Callable<Void>() {
 		@Override
 		public Void call() throws Exception {
-			remove(Main.StartMenu);
+//			remove(Main.StartMenu);
 			Main.character.setLocation(WIDTH / 3 - Main.character.getWidth(), Main.character.getHeight());
 			Main.isInMenu = false;
 			return null;
