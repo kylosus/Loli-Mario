@@ -5,12 +5,17 @@ import acm.program.GraphicsProgram;
 
 import java.awt.Color;
 import java.awt.event.KeyEvent;
-import java.awt.event.MouseListener;
+import java.util.ArrayList;
+import java.util.Iterator;
 
 public class Main extends GraphicsProgram {
 
+	public static ArrayList<Character> Characters = new ArrayList<>();
+	private static Iterator<Character> iterator = Characters.iterator();
 	public static Character character;
 	//	public static GImage weapon = new GImage(Madoka.WeaponForward.getImage());
+	public static StartMenu StartMenu;
+	public static boolean isInMenu = true;
 	public static Background background;
 	public static Foreground foreground;
 	private static double WIDTH;
@@ -42,16 +47,20 @@ public class Main extends GraphicsProgram {
 		foreground = new Foreground(getWidth(), getHeight());
 		background = new Background(WIDTH, HEIGHT);
 
-
-		setBackground(new Color(84, 208, 249));
-		add(background);
-		add(foreground);
-
 		character = new Character();
 
 
 		character = new Character(Madoka.init(character));
+
+
+		setCharacters();
+		iterator = Characters.iterator();
 //		character = new Character(new Homura());
+
+		StartMenu = new StartMenu(getWidth(), getHeight());
+		add(StartMenu);
+
+		while (isInMenu) ;
 
 		add(character, getWidth() / 2, Foreground.REFERENCE_POINT - character.getHeight());
 		CHARACTER_SPEED = character.Speed;
@@ -59,12 +68,15 @@ public class Main extends GraphicsProgram {
 		FOREGROUND_SPEED = character.Speed / 2;
 
 
+		setBackground(new Color(84, 208, 249));
+		add(background);
+		add(foreground);
+
+
 		Sound.playBackground();
 
 //		QuestionBlock block = new QuestionBlock();
 //		add(block, 200, 200);
-
-		add(new StartMenu(getWidth(), getHeight()));
 
 		while (!isGameOver()) {
 			System.out.println("");
@@ -298,6 +310,22 @@ public class Main extends GraphicsProgram {
 		} else {
 			isUpCollision = false;
 			return false;
+		}
+	}
+
+	private void setCharacters() {
+		Characters.add(new Homura());
+		Characters.add(Madoka.init(character));
+		Characters.add(new Mami());
+	}
+
+	public static void changeCharacter() {
+		if (iterator.hasNext()) {
+			character = new Character(iterator.next());
+			System.out.println("Character change to " + character.name);
+		} else {
+			iterator = Characters.iterator();
+			changeCharacter();
 		}
 	}
 

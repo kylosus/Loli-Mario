@@ -1,32 +1,55 @@
+import Builders.Character;
+import Characters.Homura;
 import acm.graphics.GCompound;
 import acm.graphics.GImage;
 import acm.graphics.GLabel;
-import acm.program.GraphicsProgram;
 
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
+import java.awt.*;
+import java.util.concurrent.Callable;
 
 public class StartMenu extends GCompound {
 	private double WIDTH;
 	private double HEIGHT;
+	private final double REFERENCE_POINT = 75;
+	public static String font = "sans-24";
+	private GImage Large = Main.character.Large;
 	private GImage background = Core.Menu_Background;
 	private GImage Left_Bar = Core.Menu_Left_Bar;
 	private GImage Right_Bar = Core.Menu_Right_Bar;
 	private GLabel name;
 	private GLabel age;
 	private GLabel weapon;
+	private MenuItem Left_Button = new MenuItem(Core.Menu_Left_Button_regular, Core.Menu_Left_Button_hovered, new Callable<Void>() {
+		@Override
+		public Void call() throws Exception {
+			changeCharacter();
+			return null;
+		}
+	});
+	private MenuItem Right_Button = new MenuItem(Core.Menu_Right_Button_regular, Core.Menu_Right_Button_hovered, new Callable<Void>() {
+		@Override
+		public Void call() throws Exception {
+			changeCharacter();
+			return null;
+		}
+	});
+	private MenuItem Play_Button = new MenuItem(Core.Menu_Button_regular, Core.Menu_Button_hovered, "Play");
+//	private MenuItem Map_Button = new MenuItem(Core.Menu_Button_regular, Core.Menu_Button_hovered);
+//	private MenuItem Exit_Button = new MenuItem(Core.Menu_Button_regular, Core.Menu_Button_hovered);
 
 	public StartMenu(double WIDTH, double HEIGHT) {
+//		Main.character = new Character(new Homura());
 		this.WIDTH = WIDTH;
 		this.HEIGHT = HEIGHT;
 		add(background);
 		add(Left_Bar, -Left_Bar.getWidth() * 2 / 3, 0);
 		add(Right_Bar, WIDTH * 2 / 3, 0);
 		add(
-				Main.character.Large,
+				Large,
 				(WIDTH - Main.character.Large.getWidth()) / 2,
 				0
 		);
+		add(Play_Button, 0, REFERENCE_POINT);
 		setGLabels();
 		add(name);
 		add(age);
@@ -37,15 +60,29 @@ public class StartMenu extends GCompound {
 				weapon.getY() + weapon.getHeight()
 		);
 
+		add(
+				Left_Button,
+				Left_Bar.getX() + Left_Bar.getWidth(),
+				HEIGHT / 2 - Left_Button.getHeight() / 2
+		);
+
+		add(
+				Right_Button,
+				Right_Bar.getX() - Right_Button.getWidth(),
+				HEIGHT / 2 - Left_Button.getHeight() / 2
+		);
+
+//		pause(1000);
+//		moveRight();
 	}
 
 	private void setGLabels() {
 		name = new GLabel(
 				"Name: " + Main.character.name,
 				WIDTH * 2 / 3 + 260,
-				75
+				REFERENCE_POINT
 		);
-		name.setFont("sans-24");
+		name.setFont(font);
 
 		age = new GLabel(
 				"Age: " + Main.character.age,
@@ -60,5 +97,20 @@ public class StartMenu extends GCompound {
 				age.getY() + age.getHeight()
 		);
 		weapon.setFont(age.getFont());
+	}
+
+	public void changeCharacter() {
+		Main.changeCharacter();
+		reset();
+	}
+
+	private void reset() {
+		remove(this);
+		add(new StartMenu(WIDTH, HEIGHT));
+		moveRight();
+	}
+
+	private void moveRight() {
+
 	}
 }

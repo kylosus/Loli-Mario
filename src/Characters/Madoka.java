@@ -43,6 +43,7 @@ public class Madoka extends Character {
 		weapon = new Weapon();
 		this.name = Name;
 		this.age = Age;
+
 		this.onscreen = Onscreen;
 		this.still.state.forward = StandStillForward;
 		this.still.state.backward = StandStillBackward;
@@ -63,6 +64,7 @@ public class Madoka extends Character {
 		character.setCurrent(StandStillForward);
 		character.name = Name;
 		character.age = Age;
+
 		character.still.state.forward = StandStillForward;
 		character.still.state.backward = StandStillBackward;
 		character.running.state.forward = RunForward;

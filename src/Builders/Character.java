@@ -2,7 +2,6 @@ package Builders;
 
 import Actions.*;
 
-import Characters.Madoka;
 import Characters.Weapon;
 import acm.graphics.GCompound;
 import acm.graphics.GImage;

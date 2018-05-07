@@ -1,13 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="Loli Mario:jar" />
+    </artifacts-to-build>
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="88b9a569-0926-4607-aca5-724af4086cdf" name="Default" comment="Added start menu">
+    <list default="true" id="88b9a569-0926-4607-aca5-724af4086cdf" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/src/MenuItem.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Images/Marios/Mami/Extra/MamiStandStillForwardlARGE.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Images/Marios/Mami/MamiShootForward.gif" beforeDir="false" afterPath="$PROJECT_DIR$/Images/Marios/Mami/MamiShootForward.gif" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Loli Mario/Builders/Character.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Loli Mario/Builders/Character.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Loli Mario/Characters/Homura.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Loli Mario/Characters/Homura.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Loli Mario/Characters/Madoka.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Loli Mario/Characters/Madoka.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Loli Mario/Characters/Mami.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Loli Mario/Characters/Mami.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Loli Mario/Characters/Weapon.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Loli Mario/Characters/Weapon.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Loli Mario/Core.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Loli Mario/Core.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Loli Mario/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Loli Mario/Main.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Loli Mario/StartMenu.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Loli Mario/StartMenu.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Builders/Character.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Builders/Character.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Characters/Homura.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Characters/Homura.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Characters/Madoka.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Characters/Madoka.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Characters/Weapon.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Characters/Weapon.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Characters/Mami.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Characters/Mami.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Core.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Core.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/StartMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/StartMenu.java" afterDir="false" />
@@ -25,28 +40,72 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Main.java">
+      <file leaf-file-name="Character.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Builders/Character.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="164">
-              <caret line="54" lean-forward="true" selection-start-line="54" selection-end-line="54" />
+            <state relative-caret-position="-167">
+              <caret line="3" selection-start-line="3" selection-end-line="3" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="StartMenu.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/StartMenu.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="389">
+              <caret line="113" column="8" selection-start-line="113" selection-start-column="8" selection-end-line="113" selection-end-column="8" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#8122#8123#0" expanded="true" />
-                <element signature="e#8147#8148#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="StartMenu.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/StartMenu.java">
+      <file leaf-file-name="Homura.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Characters/Homura.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="287">
-              <caret line="57" selection-start-line="57" selection-end-line="57" />
+            <state relative-caret-position="152">
+              <caret line="13" column="72" selection-start-line="13" selection-start-column="72" selection-end-line="13" selection-end-column="72" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Mami.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Characters/Mami.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="452">
+              <caret line="22" column="81" selection-start-line="22" selection-start-column="81" selection-end-line="22" selection-end-column="81" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MenuItem.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/MenuItem.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="245">
+              <caret line="52" column="34" selection-start-line="52" selection-start-column="34" selection-end-line="52" selection-end-column="34" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#1622#1623#0" expanded="true" />
+                <element signature="e#1659#1660#0" expanded="true" />
+                <element signature="e#1716#1717#0" expanded="true" />
+                <element signature="e#1753#1754#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Core.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Core.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="374">
+              <caret line="17" column="87" selection-start-line="17" selection-start-column="87" selection-end-line="17" selection-end-column="87" />
             </state>
           </provider>
         </entry>
@@ -85,16 +144,17 @@
         <option value="$PROJECT_DIR$/src/Actions/Shoot.java" />
         <option value="$PROJECT_DIR$/src/Actions/Shooting.java" />
         <option value="$PROJECT_DIR$/src/Characters/Kyouko.java" />
-        <option value="$PROJECT_DIR$/src/Characters/Mami.java" />
-        <option value="$PROJECT_DIR$/src/Characters/Homura.java" />
         <option value="$PROJECT_DIR$/src/WeaponShooter.java" />
         <option value="$PROJECT_DIR$/src/Level.java" />
-        <option value="$PROJECT_DIR$/src/Core.java" />
-        <option value="$PROJECT_DIR$/src/Main.java" />
         <option value="$PROJECT_DIR$/src/Characters/Weapon.java" />
-        <option value="$PROJECT_DIR$/src/Builders/Character.java" />
+        <option value="$PROJECT_DIR$/src/Core.java" />
+        <option value="$PROJECT_DIR$/src/Characters/Homura.java" />
         <option value="$PROJECT_DIR$/src/Characters/Madoka.java" />
+        <option value="$PROJECT_DIR$/src/Builders/Character.java" />
+        <option value="$PROJECT_DIR$/src/Characters/Mami.java" />
+        <option value="$PROJECT_DIR$/src/Main.java" />
         <option value="$PROJECT_DIR$/src/StartMenu.java" />
+        <option value="$PROJECT_DIR$/src/MenuItem.java" />
       </list>
     </option>
   </component>
@@ -109,7 +169,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -145,12 +204,14 @@
         </subPane>
       </pane>
       <pane id="Scope" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="SearchEverywhereHistoryKey" value="init&#9;PSI&#9;JAVA://Main#init" />
-    <property name="project.structure.last.edited" value="Libraries" />
-    <property name="project.structure.proportion" value="0.0" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/Images" />
+    <property name="project.structure.last.edited" value="Artifacts" />
+    <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
@@ -230,21 +291,31 @@
       <option name="presentableId" value="Default" />
       <updated>1525036019693</updated>
     </task>
+    <task id="LOCAL-00001" summary="Added start menu">
+      <created>1525528241235</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1525528241235</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info active="true" anchor="bottom" id="Messages" order="10" visible="true" weight="0.32965517" />
+      <window_info anchor="bottom" id="Messages" order="10" weight="0.32965517" />
       <window_info anchor="right" id="Palette&#9;" order="5" />
-      <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" />
+      <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" weight="0.32965517" />
       <window_info anchor="right" id="Maven Projects" order="4" />
       <window_info anchor="bottom" id="Version Control" order="9" weight="0.32965517" />
-      <window_info anchor="bottom" x="0" y="292" width="1536" height="239" id="Run" order="2" weight="0.32965517" />
+      <window_info active="true" anchor="bottom" x="0" y="292" width="1536" height="239" id="Run" order="2" visible="true" weight="0.32551724" />
       <window_info anchor="bottom" id="Terminal" order="7" />
       <window_info id="Designer" order="2" />
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.13932292" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32965517" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info id="Favorites" order="4" side_tool="true" />
@@ -257,33 +328,7 @@
       <window_info id="UI Designer" order="3" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Find" order="1" />
     </layout>
-    <layout-to-restore>
-      <window_info anchor="right" id="Palette" order="3" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32965517" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.13932292" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info id="Designer" order="2" />
-      <window_info id="UI Designer" order="3" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
-      <window_info anchor="right" id="Maven Projects" order="4" />
-      <window_info anchor="right" id="Palette&#9;" order="5" />
-      <window_info anchor="bottom" id="Terminal" order="7" />
-      <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="Version Control" order="9" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Messages" order="10" weight="0.32965517" />
-      <window_info anchor="right" id="Coverage" order="6" side_tool="true" weight="0.3294271" />
-      <window_info id="Favorites" order="4" side_tool="true" />
-    </layout-to-restore>
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
@@ -295,24 +340,12 @@
     <MESSAGE value="Added start menu" />
     <option name="LAST_COMMIT_MESSAGE" value="Added start menu" />
   </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <option name="time" value="1" />
+    </breakpoint-manager>
+  </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/StartMenu.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" column="31" selection-start-line="15" selection-start-column="31" selection-end-line="15" selection-end-column="31" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/MoveBlock.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="13" column="29" selection-start-line="13" selection-start-column="29" selection-end-line="13" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/StartMenu.java">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -333,8 +366,8 @@
           <caret line="142" column="20" selection-start-line="142" selection-start-column="20" selection-end-line="142" selection-end-column="20" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#8122#8123#0" expanded="true" />
-            <element signature="e#8147#8148#0" expanded="true" />
+            <element signature="e#8886#8887#0" expanded="true" />
+            <element signature="e#8911#8912#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -387,8 +420,8 @@
           <caret line="170" column="10" selection-start-line="170" selection-start-column="10" selection-end-line="170" selection-end-column="10" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#8122#8123#0" expanded="true" />
-            <element signature="e#8147#8148#0" expanded="true" />
+            <element signature="e#8886#8887#0" expanded="true" />
+            <element signature="e#8911#8912#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -441,8 +474,8 @@
           <caret line="153" column="5" lean-forward="true" selection-start-line="153" selection-start-column="5" selection-end-line="153" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#8122#8123#0" expanded="true" />
-            <element signature="e#8147#8148#0" expanded="true" />
+            <element signature="e#8886#8887#0" expanded="true" />
+            <element signature="e#8911#8912#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -582,42 +615,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Characters/Mami.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="19" column="91" selection-start-line="19" selection-start-column="91" selection-end-line="19" selection-end-column="91" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Characters/Homura.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="24" column="46" selection-start-line="24" selection-start-column="44" selection-end-line="24" selection-end-column="46" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/WeaponShooter.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="238">
           <caret line="21" column="9" selection-start-line="21" selection-start-column="9" selection-end-line="21" selection-end-column="9" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#310#311#0" expanded="true" />
-            <element signature="e#337#338#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Foreground.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="24" selection-start-line="24" selection-end-line="24" />
         </state>
       </provider>
     </entry>
@@ -628,16 +629,16 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Core.java">
+    <entry file="file://$PROJECT_DIR$/src/Foreground.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
-          <caret line="15" lean-forward="true" selection-start-line="15" selection-end-line="15" />
+        <state relative-caret-position="306">
+          <caret line="24" selection-start-line="24" selection-end-line="24" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Characters/Weapon.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
+        <state relative-caret-position="136">
           <caret line="8" column="23" selection-start-line="8" selection-start-column="23" selection-end-line="8" selection-end-column="23" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -645,10 +646,46 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/Core.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="17" column="87" selection-start-line="17" selection-start-column="87" selection-end-line="17" selection-end-column="87" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Characters/Madoka.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="480">
-          <caret line="64" column="28" selection-start-line="64" selection-start-column="28" selection-end-line="64" selection-end-column="28" />
+        <state relative-caret-position="89">
+          <caret line="46" column="19" selection-start-line="46" selection-start-column="19" selection-end-line="46" selection-end-column="19" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_151/src.zip!/java/awt/event/MouseListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="564">
+          <caret line="82" column="16" selection-start-line="82" selection-start-column="16" selection-end-line="82" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="347">
+          <caret line="325" column="16" selection-start-line="325" selection-start-column="16" selection-end-line="325" selection-end-column="16" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#8886#8887#0" expanded="true" />
+            <element signature="e#8911#8912#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Characters/Mami.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="452">
+          <caret line="22" column="81" selection-start-line="22" selection-start-column="81" selection-end-line="22" selection-end-column="81" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -657,46 +694,41 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Builders/Character.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="600">
-          <caret line="51" column="49" selection-start-line="51" selection-start-column="49" selection-end-line="51" selection-end-column="49" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1672#1673#0" expanded="true" />
-            <element signature="e#1732#1733#0" expanded="true" />
-            <element signature="e#1772#1773#0" expanded="true" />
-            <element signature="e#1833#1834#0" expanded="true" />
-            <element signature="e#1869#1870#0" expanded="true" />
-            <element signature="e#1931#1932#0" expanded="true" />
-            <element signature="e#2073#2074#0" expanded="true" />
-            <element signature="e#2095#2096#0" expanded="true" />
-            <element signature="e#2125#2126#0" expanded="true" />
-            <element signature="e#2187#2188#0" expanded="true" />
-            <element signature="e#2224#2225#0" expanded="true" />
-            <element signature="e#2292#2293#0" expanded="true" />
-            <element signature="e#2329#2330#0" expanded="true" />
-            <element signature="e#2392#2393#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="-167">
+          <caret line="3" selection-start-line="3" selection-end-line="3" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Main.java">
+    <entry file="file://$PROJECT_DIR$/src/Characters/Homura.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="164">
-          <caret line="54" lean-forward="true" selection-start-line="54" selection-end-line="54" />
+        <state relative-caret-position="152">
+          <caret line="13" column="72" selection-start-line="13" selection-start-column="72" selection-end-line="13" selection-end-column="72" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#8122#8123#0" expanded="true" />
-            <element signature="e#8147#8148#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/StartMenu.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="287">
-          <caret line="57" selection-start-line="57" selection-end-line="57" />
+        <state relative-caret-position="389">
+          <caret line="113" column="8" selection-start-line="113" selection-start-column="8" selection-end-line="113" selection-end-column="8" />
           <folding>
             <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/MenuItem.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="245">
+          <caret line="52" column="34" selection-start-line="52" selection-start-column="34" selection-end-line="52" selection-end-column="34" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1622#1623#0" expanded="true" />
+            <element signature="e#1659#1660#0" expanded="true" />
+            <element signature="e#1716#1717#0" expanded="true" />
+            <element signature="e#1753#1754#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -707,10 +739,12 @@
       <state key="ArtifactsStructureConfigurable.UI">
         <settings>
           <artifact-editor />
+          <last-edited>Loli Mario</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
                 <option value="0.2" />
+                <option value="0.5" />
               </list>
             </option>
           </splitter-proportions>

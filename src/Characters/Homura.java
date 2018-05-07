@@ -11,6 +11,7 @@ public class Homura extends Character {
 		jumping = new Jumping();
 		still = new Still();
 		name = "Akemi Homura";
+		this.Large = new GImage("Images/Marios/Homura/HomuraLarge.gif");
 		Onscreen = new GImage("Images/Marios/Homura/HomuraStandStillForward.gif");
 		this.still.state.forward = new GImage("Images/Marios/Homura/HomuraStandStillForward.gif");
 		this.still.state.backward = new GImage("Images/Marios/Homura/HomuraStandStillForward.gif");
