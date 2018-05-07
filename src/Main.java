@@ -41,36 +41,35 @@ public class Main extends GraphicsProgram {
 
 
 	public void run() {
-
 		WIDTH = getWidth();
 		HEIGHT = getHeight();
-		foreground = new Foreground(getWidth(), getHeight());
-		background = new Background(WIDTH, HEIGHT);
+
 
 		character = new Character();
-
-
 		character = new Character(Madoka.init(character));
-
-
 		setCharacters();
 		iterator = Characters.iterator();
-//		character = new Character(new Homura());
 
+		foreground = new Foreground(getWidth(), getHeight());
+		background = new Background(WIDTH, HEIGHT);
+		add(background);
+		add(foreground);
+		add(character);
 		StartMenu = new StartMenu(getWidth(), getHeight());
 		add(StartMenu);
 
-		while (isInMenu) ;
+		while (isInMenu) {
+			System.out.println("In in Menu");
+		}
 
-		add(character, getWidth() / 2, Foreground.REFERENCE_POINT - character.getHeight());
+		removeMenu();
+
 		CHARACTER_SPEED = character.Speed;
 		BACKGROUND_SPEED = character.Speed / 5;
 		FOREGROUND_SPEED = character.Speed / 2;
 
 
 		setBackground(new Color(84, 208, 249));
-		add(background);
-		add(foreground);
 
 
 		Sound.playBackground();
@@ -327,6 +326,10 @@ public class Main extends GraphicsProgram {
 			iterator = Characters.iterator();
 			changeCharacter();
 		}
+	}
+
+	public void removeMenu() {
+		remove(StartMenu);
 	}
 
 	public static void main(String[] args) {

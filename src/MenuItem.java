@@ -37,6 +37,22 @@ public class MenuItem extends GCompound {
 		addListeners();
 	}
 
+	public MenuItem(String regular, String hovered, String text, Callable<Void> clickMethod) {
+		this.regular = regular;
+		this.hovered = hovered;
+		Onscreen = new GImage(this.regular);
+		add(Onscreen);
+		GLabel Button_Text = new GLabel(text);
+		Button_Text.setFont(StartMenu.font);
+		add(
+				Button_Text,
+				(Onscreen.getWidth() - Button_Text.getWidth()) / 2,
+				(Onscreen.getHeight() + Button_Text.getHeight() / 2) / 2
+		);
+		this.clickMethod = clickMethod;
+		addListeners();
+	}
+
 	public void addListeners() {
 		Onscreen.addMouseListener(new MouseListener() {
 			@Override
@@ -44,6 +60,7 @@ public class MenuItem extends GCompound {
 				if (clickMethod != null) {
 					try {
 						clickMethod.call();
+						System.out.println("Click successful");
 					} catch (Exception exception) {
 						exception.printStackTrace();
 					}
