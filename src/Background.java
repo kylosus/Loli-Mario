@@ -1,8 +1,5 @@
+import Builders.Core;
 import acm.graphics.*;
-
-import java.awt.*;
-
-import acm.program.*;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -32,7 +29,7 @@ public class Background extends GCompound {
 //		for (int i = 0; i <= AMOUNT_OF_SQUARES; i++) {
 //			add(new GImage(
 //					"Images/Background/Ground2.gif",
-//					i * SQUARE_WIDTH,
+//					i * BRICK_WIDTH,
 //					HEIGHT * GROUND_SQUARE_RATIO
 //			));
 //		}

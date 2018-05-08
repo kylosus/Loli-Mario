@@ -1,12 +1,16 @@
+package Builders;
+
 import acm.graphics.GImage;
 
 public abstract class Core {
+	public static String Ground_Low = "Images/Background/Ground2.gif";
+	public static String Ground_High = "Images/Background/Ground1.png";
 	public static GImage SakuraTree = new GImage("Images/Background/Sakura Tree.gif");
 	public static GImage Cloud_single = new GImage("Images/Background/Cloud - Single.gif");
 	public static GImage Cloud_double = new GImage("Images/Background/Cloud - Double.gif");
 	public static GImage Cloud_triple = new GImage("Images/Background/Cloud - Triple.gif");
-	public static GImage Tube = new GImage("Images/Tubes/tube.png");
-	public static GImage Tube_long = new GImage("Images/Tubes/tube_long.png");
+	public static String Tube_short = "Images/Tubes/tube.png";
+	public static String Tube_long = "Images/Tubes/tube_long.png";
 	public static GImage Menu_Background = new GImage("Images/DDLC/gui/menu_bg.png");
 	public static GImage Menu_Left_Bar = new GImage("Images/Menu/Left bar.png");
 	public static GImage Menu_Right_Bar = new GImage("Images/Menu/Right bar.png");

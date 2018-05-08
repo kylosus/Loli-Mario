@@ -13,7 +13,6 @@ public class Main extends GraphicsProgram {
 	public static ArrayList<Character> Characters = new ArrayList<>();
 	private static Iterator<Character> iterator = Characters.iterator();
 	public static Character character;
-	//	public static GImage weapon = new GImage(Madoka.WeaponForward.getImage());
 	public static StartMenu StartMenu;
 	public static boolean isInMenu = true;
 	public static Background background;
@@ -68,14 +67,9 @@ public class Main extends GraphicsProgram {
 		BACKGROUND_SPEED = character.Speed / 5;
 		FOREGROUND_SPEED = character.Speed / 2;
 
-
 		setBackground(new Color(84, 208, 249));
 
-
 		Sound.playBackground();
-
-//		QuestionBlock block = new QuestionBlock();
-//		add(block, 200, 200);
 
 		while (!isGameOver()) {
 			System.out.println("");
