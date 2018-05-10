@@ -1,13 +1,17 @@
 import Builders.Core;
+import Levels.Level;
 import Levels.Level_1;
 import acm.graphics.GCompound;
 import acm.graphics.GImage;
 import acm.graphics.GPoint;
 
+import java.io.FileOutputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.Map;
 import java.util.Random;
 
-public class Foreground extends GCompound {
+public class Foreground extends GCompound implements Serializable {
 //	public static final int AMOUNT_OF_SQUARES = 300;
 	public static final int BRICK_WIDTH = 32;
 //	public static final double GROUND_SQUARE_RATIO = 0.75
@@ -22,15 +26,18 @@ public class Foreground extends GCompound {
 
 		Level_1 level = new Level_1(REFERENCE_POINT, WIDTH, HEIGHT);
 		{
-			double x, y;
+			double x, y, dy = 0;
 
-			for (Map.Entry<GPoint, Integer> entry : level.Ground_Low.entrySet()) {
-				x = entry.getKey().getX();
-				y = entry.getKey().getY();
-				for (int i = 0; i < entry.getValue(); i++) {
-					add(new GImage(Core.Ground_Low), x, y);
-					x += BRICK_WIDTH;
+			for (int i1 = 0; i1 < 2; i1++) {
+				for (Map.Entry<GPoint, Integer> entry : level.Ground_Low.entrySet()) {
+					x = entry.getKey().getX();
+					y = entry.getKey().getY() + dy;
+					for (int i2 = 0; i2 < entry.getValue(); i2++) {
+						add(new GImage(Core.Ground_Low), x, y);
+						x += BRICK_WIDTH;
+					}
 				}
+				dy += Level.Brick_Width;
 			}
 
 			x = 0;

@@ -5,7 +5,9 @@ import acm.graphics.*;
 
 import Actions.*;
 
-public class Madoka extends Character {
+import java.io.Serializable;
+
+public class Madoka extends Character implements Serializable {
 	public static String Name = "Kaname Madoka";
 	public static String Age = "14";
 	public static String WeaponName = "Rose branch bow";

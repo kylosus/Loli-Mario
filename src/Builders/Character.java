@@ -6,7 +6,9 @@ import Characters.Weapon;
 import acm.graphics.GCompound;
 import acm.graphics.GImage;
 
-public class Character extends GCompound {
+import java.io.Serializable;
+
+public class Character extends GCompound implements Serializable {
 	private Character character;
 	private static GImage current;
 	public Running running;

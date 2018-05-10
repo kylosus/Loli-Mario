@@ -1,10 +1,15 @@
 import Builders.Character;
 import Characters.*;
+import acm.graphics.GObject;
 import acm.graphics.GPoint;
 import acm.program.GraphicsProgram;
 
 import java.awt.Color;
 import java.awt.event.KeyEvent;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -69,8 +74,7 @@ public class Main extends GraphicsProgram {
 
 		setBackground(new Color(84, 208, 249));
 
-		Sound.playBackground();
-
+//		Sound.playBackground();
 		while (!isGameOver()) {
 			System.out.println("");
 
@@ -328,5 +332,31 @@ public class Main extends GraphicsProgram {
 
 	public static void main(String[] args) {
 		new Main().start();
+	}
+
+	private void writeForegroundToFile(Object object) {
+		try {
+			FileOutputStream fileOut = new FileOutputStream("Objects/foreground.txt");
+			ObjectOutputStream objectOut = new ObjectOutputStream(fileOut);
+			objectOut.writeObject(object);
+			objectOut.close();
+			System.out.println("Object has been written into file.");
+		} catch (java.io.IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	private Object readFromFile(String path) {
+		try {
+			FileInputStream fileIn = new FileInputStream(path);
+			ObjectInputStream objectIn = new ObjectInputStream(fileIn);
+			Object object = objectIn.readObject();
+			objectIn.close();
+			System.out.println("Object has been read");
+			return object;
+		} catch (java.io.IOException | java.lang.ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 }

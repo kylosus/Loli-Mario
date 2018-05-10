@@ -17,8 +17,8 @@ public class Level_1 extends Level {
 	private void initiate_Ground_low() {
 		Ground_Low.put(new GPoint(0, REFERENCE_POINT), 70);
 		Ground_Low.put(new GPoint(2336, REFERENCE_POINT), 15);
-		Ground_Low.put(new GPoint(2908, REFERENCE_POINT), 64);
-		Ground_Low.put(new GPoint(5052, REFERENCE_POINT), 47);
+		Ground_Low.put(new GPoint(2912, REFERENCE_POINT), 67);
+		Ground_Low.put(new GPoint(5120, REFERENCE_POINT), 58);
 	}
 
 
@@ -39,7 +39,7 @@ public class Level_1 extends Level {
 	private void initiate_Tube() {
 		Tube.put(new GImage(Core.Tube_short), Level.Brick_Width * 29);
 		Tube.put(new GImage(Core.Tube_short), Level.Brick_Width * 40);
-		Tube.put(new GImage(Core.Tube_long), Brick_Width * 48);
+		Tube.put(new GImage(Core.Tube_long), Level.Brick_Width * 48);
 		Tube.put(new GImage(Core.Tube_short), Level.Brick_Width * 60);
 		Tube.put(new GImage(Core.Tube_short), Level.Brick_Width * 169);
 		Tube.put(new GImage(Core.Tube_short), Level.Brick_Width * 186);
@@ -47,9 +47,9 @@ public class Level_1 extends Level {
 
 	private void initiate_Steps() {
 		Steps.put(new GPoint(139 * Level.Brick_Width, HEIGHT - 4 * Level.Brick_Width + 1 * Level.Brick_Width), 4);
-		Steps.put(new GPoint(145 * Level.Brick_Width, HEIGHT - 4 * Level.Brick_Width + 1 * Level.Brick_Width), 4);
-		Steps.put(new GPoint(154 * Level.Brick_Width, HEIGHT - 4 * Level.Brick_Width + 1 * Level.Brick_Width), 5);
-		Steps.put(new GPoint(162 * Level.Brick_Width, HEIGHT - 4 * Level.Brick_Width + 1 * Level.Brick_Width), 4);
+		Steps.put(new GPoint(145 * Level.Brick_Width, HEIGHT - 4 * Level.Brick_Width + 1 * Level.Brick_Width), -4);
+		Steps.put(new GPoint(153 * Level.Brick_Width, HEIGHT - 4 * Level.Brick_Width + 1 * Level.Brick_Width), 5);
+		Steps.put(new GPoint(160 * Level.Brick_Width, HEIGHT - 4 * Level.Brick_Width + 1 * Level.Brick_Width), -4);
 		Steps.put(new GPoint(188 * Level.Brick_Width, HEIGHT - 8 * Level.Brick_Width + 5 * Level.Brick_Width), 8);
 	}
 }
