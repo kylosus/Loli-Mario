@@ -2,16 +2,13 @@ import Builders.Background;
 import Builders.Character;
 import Builders.Foreground;
 import Characters.*;
-import Foes.Goomba;
+import Objects.Foe;
+import Objects.Goomba;
 import acm.graphics.GPoint;
 import acm.program.GraphicsProgram;
 
 import java.awt.Color;
 import java.awt.event.KeyEvent;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -29,6 +26,7 @@ public class Main extends GraphicsProgram {
 	private static double CHARACTER_SPEED;
 	private static double BACKGROUND_SPEED;
 	private static double FOREGROUND_SPEED;
+	private static final double SPEED_MULTIPLIER = 1.5;
 	private final static double PAUSE_TIME_FINAL = 10;
 	public static double PAUSE_TIME = 5;
 	private static boolean isJumping = false;
@@ -38,7 +36,7 @@ public class Main extends GraphicsProgram {
 	private static boolean SPACE_KEY_PRESSED = false;
 	private static boolean IS_FALLING = false;
 	private static int JUMP_AIR_TIME = 50;
-	private static final int AIR_TIME_FINAL = 50;
+	private static final int JUMP_AIR_TIME_FINAL = 50;
 	private static GPoint intersectionPoint = new GPoint();
 	private static boolean isUpCollision = false;
 	public static boolean hasWeaponCrashed = false;
@@ -77,23 +75,46 @@ public class Main extends GraphicsProgram {
 		setBackground(new Color(84, 208, 249));
 
 //		Sound.playBackground();
-		Goomba goomba = new Goomba(foreground);
-		goomba.init(foreground);
+//		Goomba goomba = new Goomba();
+//		goomba.init(foreground);
 //		add(goomba, character.getX() + 500, Foreground.REFERENCE_POINT - goomba.getHeight());
-		add(goomba, 683, Foreground.REFERENCE_POINT - goomba.getHeight());
-		System.gc();
+//		add(goomba, 683, Foreground.REFERENCE_POINT - goomba.getHeight());
 
+//		FoeBuilder foe = new FoeBuilder(foreground);
+
+//		add(foe, 500, 100);
+//		add(new Goomba().init(foreground), 500, 0);
+		FoeBuilder foe = new FoeBuilder(foreground);
+		add(foe);
+
+		character.setLocation(0, character.getY());
 		while (!isGameOver()) {
 //			System.out.println("");
 
-			if (goomba.isInterractible && character.getBounds().intersects(goomba.getBounds())) {
+//			if (goomba.isInterractible && character.getBounds().intersects(goomba.getBounds())) {
+//				if (!isOnGround()) {
+//					goomba.die();
+//					JUMP_AIR_TIME = 70;
+//					UP_KEY_PRESSED = true;
+//					IS_FALLING = false;
+//					jump();
+//				} else {
+//					break;
+//				}
+//			}
+
+
+			if (foe.contains(character.getX() + character.getWidth() / 2, character.getY() + character.getHeight())) {
 				if (!isOnGround()) {
-					goomba.die();
-					JUMP_AIR_TIME = 70;
-					UP_KEY_PRESSED = true;
-					IS_FALLING = false;
-					jump();
-				} else {
+					if (foe.getObjectAt(character.getX() + character.getWidth() / 2, character.getY() + character.getHeight()).isInterractible) {
+						foe.getObjectAt(character.getX() + character.getWidth() / 2, character.getY() + character.getHeight()).die();
+
+						JUMP_AIR_TIME = 70;
+						UP_KEY_PRESSED = true;
+						IS_FALLING = false;
+						jump();
+					}
+				} else if (foe.getObjectAt(character.getX() + character.getWidth() / 2, character.getY() + character.getHeight()).isInterractible) {
 					break;
 				}
 			}
@@ -103,14 +124,19 @@ public class Main extends GraphicsProgram {
 			}
 
 			if (RIGHT_KEY_PRESSED && !isRightCollision()) {
-				moveRight();
-				goomba.move(-FOREGROUND_SPEED, 0);
-				character.weapon.forward.move(FOREGROUND_SPEED, 0);
+				if (isCamera()) {
+					moveRight();
+					foe.move(-FOREGROUND_SPEED, 0);
+					character.weapon.forward.move(FOREGROUND_SPEED, 0);
+				} else {
+					character.move(FOREGROUND_SPEED, 0);
+				}
 			}
 
 			if (LEFT_KEY_PRESSED && !isLeftCollision()) {
-				moveLeft();
-				goomba.move(FOREGROUND_SPEED, 0);
+				character.move(-FOREGROUND_SPEED, 0);
+//				moveLeft();
+//				goomba.move(FOREGROUND_SPEED, 0);
 				character.weapon.forward.move(-FOREGROUND_SPEED, 0);
 			}
 
@@ -222,7 +248,7 @@ public class Main extends GraphicsProgram {
 		if (foreground.contains(character.getX() + character.getWidth() / 2, character.getY() + character.getHeight())) {
 			return true;
 		} else {
-			JUMP_AIR_TIME = AIR_TIME_FINAL;
+			JUMP_AIR_TIME = JUMP_AIR_TIME_FINAL;
 			IS_FALLING = true;
 			System.out.println("It is on air");
 			return false;
@@ -276,7 +302,7 @@ public class Main extends GraphicsProgram {
 			if (JUMP_AIR_TIME != 0) {
 				JUMP_AIR_TIME = JUMP_AIR_TIME - 1;
 			} else {
-				JUMP_AIR_TIME = AIR_TIME_FINAL;
+				JUMP_AIR_TIME = JUMP_AIR_TIME_FINAL;
 				UP_KEY_PRESSED = false;
 				IS_FALLING = true;
 			}
@@ -288,7 +314,7 @@ public class Main extends GraphicsProgram {
 
 	private void fallDown() {
 		if (foreground.contains(character.getX(), character.getY() + character.getHeight())) {
-			JUMP_AIR_TIME = AIR_TIME_FINAL;
+			JUMP_AIR_TIME = JUMP_AIR_TIME_FINAL;
 			IS_FALLING = false;
 			isJumping = false;
 		} else {
@@ -296,21 +322,21 @@ public class Main extends GraphicsProgram {
 			IS_FALLING = true;
 		}
 		if (JUMP_AIR_TIME != 0) {
-			JUMP_AIR_TIME = AIR_TIME_FINAL;
+			JUMP_AIR_TIME = JUMP_AIR_TIME_FINAL;
 		} else {
-			JUMP_AIR_TIME = AIR_TIME_FINAL;
+			JUMP_AIR_TIME = JUMP_AIR_TIME_FINAL;
 			IS_FALLING = false;
 			PAUSE_TIME = PAUSE_TIME_FINAL;
 		}
 	}
 
 	private void die() {
-		for (int i = 0; i < AIR_TIME_FINAL / 5; i++) {
+		for (int i = 0; i < JUMP_AIR_TIME_FINAL / 5; i++) {
 			character.move(0, -CHARACTER_SPEED * 2);
 			pause(PAUSE_TIME * 2);
 		}
 
-		for (int i = 0; i < AIR_TIME_FINAL / 5 + 3; i++) {
+		for (int i = 0; i < JUMP_AIR_TIME_FINAL / 5 + 3; i++) {
 			character.move(0, CHARACTER_SPEED * 2);
 			pause(PAUSE_TIME * 2);
 		}
@@ -355,37 +381,15 @@ public class Main extends GraphicsProgram {
 		}
 	}
 
+	private boolean isCamera() {
+		return character.getX() + character.getWidth() > getWidth() / 2;
+	}
+
 	public void removeMenu() {
 		remove(StartMenu);
 	}
 
 	public static void main(String[] args) {
 		new Main().start();
-	}
-
-	private void writeForegroundToFile(Object object) {
-		try {
-			FileOutputStream fileOut = new FileOutputStream("Objects/foreground.txt");
-			ObjectOutputStream objectOut = new ObjectOutputStream(fileOut);
-			objectOut.writeObject(object);
-			objectOut.close();
-			System.out.println("Object has been written into file.");
-		} catch (java.io.IOException e) {
-			e.printStackTrace();
-		}
-	}
-
-	private Object readFromFile(String path) {
-		try {
-			FileInputStream fileIn = new FileInputStream(path);
-			ObjectInputStream objectIn = new ObjectInputStream(fileIn);
-			Object object = objectIn.readObject();
-			objectIn.close();
-			System.out.println("Object has been read");
-			return object;
-		} catch (java.io.IOException | java.lang.ClassNotFoundException e) {
-			e.printStackTrace();
-		}
-		return null;
 	}
 }

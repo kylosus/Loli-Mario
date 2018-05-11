@@ -1,4 +1,4 @@
-package Foes;
+package Objects;
 
 import Builders.Foreground;
 import acm.program.GraphicsProgram;

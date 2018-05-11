@@ -1,4 +1,4 @@
-package Foes;
+package Objects;
 
 import Builders.Foreground;
 import acm.graphics.GCompound;
@@ -35,9 +35,10 @@ public class Foe extends GCompound {
 	}
 
 
-	public void init(Foreground foreground) {
+	public Foe init(Foreground foreground) {
 //		add(this, foreground.getLocalPoint(x, foreground.REFERENCE_POINT - this.getHeight()));
 		runner = new Runner(this, foreground);
 		new Thread(runner).start();
+		return this;
 	}
 }
