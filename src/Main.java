@@ -77,12 +77,26 @@ public class Main extends GraphicsProgram {
 		setBackground(new Color(84, 208, 249));
 
 //		Sound.playBackground();
-		Goomba goomba = new Goomba();
-		goomba.init(foreground, character.getX() + 500, getHeight());
-//		add(goomba, character.getX() + 500, getHeight());
-		add(goomba, character.getX() + 500, Foreground.REFERENCE_POINT - goomba.getHeight());
+		Goomba goomba = new Goomba(foreground);
+		goomba.init(foreground);
+//		add(goomba, character.getX() + 500, Foreground.REFERENCE_POINT - goomba.getHeight());
+		add(goomba, 683, Foreground.REFERENCE_POINT - goomba.getHeight());
+		System.gc();
+
 		while (!isGameOver()) {
 //			System.out.println("");
+
+			if (goomba.isInterractible && character.getBounds().intersects(goomba.getBounds())) {
+				if (!isOnGround()) {
+					goomba.die();
+					JUMP_AIR_TIME = 70;
+					UP_KEY_PRESSED = true;
+					IS_FALLING = false;
+					jump();
+				} else {
+					break;
+				}
+			}
 
 			if (!isJumping && !isOnGround()) {
 				character.move(0, CHARACTER_SPEED / 2);
@@ -139,7 +153,14 @@ public class Main extends GraphicsProgram {
 			}
 
 			if ((IS_FALLING && !isOnGround())) {
+//				if (getElementAt(character.getX() + character.getWidth() / 2, character.getY() + character.getHeight()) instanceof Foe) {
+//					JUMP_AIR_TIME = 70;
+//					UP_KEY_PRESSED = true;
+//					IS_FALLING = false;
+//					jump();
+//				} else {
 				fallDown();
+//			}
 			}
 
 			pause(PAUSE_TIME);
@@ -327,7 +348,7 @@ public class Main extends GraphicsProgram {
 	public static void changeCharacter() {
 		if (iterator.hasNext()) {
 			character = new Character(iterator.next());
-			System.out.println("Character change to " + character.name);
+			System.out.println("Character changed to " + character.name);
 		} else {
 			iterator = Characters.iterator();
 			changeCharacter();

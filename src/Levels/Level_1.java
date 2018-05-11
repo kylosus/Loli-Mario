@@ -4,6 +4,8 @@ import Builders.Core;
 import acm.graphics.GImage;
 import acm.graphics.GPoint;
 
+import java.io.Serializable;
+
 public class Level_1 extends Level {
 
 	public Level_1(double REFERENCE_POINT, double WIDTH, double HEIGHT) {

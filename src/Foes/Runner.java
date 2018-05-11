@@ -1,9 +1,7 @@
 package Foes;
 
 import Builders.Foreground;
-import Foes.Foe;
 import acm.program.GraphicsProgram;
-import sun.applet.Main;
 
 public class Runner extends GraphicsProgram implements Runnable {
 	private Foe foe;
@@ -20,41 +18,38 @@ public class Runner extends GraphicsProgram implements Runnable {
 
 	@Override
 	public void run() {
+		double dx = 0, dy = 2;
 		while (!isDead) {
-			while (!isRightCollision() && right) {
+			while (!isRightCollision() && right && !isDead && isOnGround()) {
 				foe.move(5, 0);
-				pause(10);
+				pause(20);
 			}
-			while (!isLeftCollision() && left) {
+			while (!isLeftCollision() && left && !isDead && isOnGround()) {
 				foe.move(-5, 0);
-				pause(10);
+				pause(20);
 			}
+			while (!isOnGround()) {
+				foe.move(dx, dy);
+				pause(10);
+				dy++;
+			}
+			dy = 2;
 		}
 	}
 
 	private boolean isLeftCollision() {
-		if (foreground.contains(foe.getX(), foe.getY())) {
-//		if (foreground.contains(foreground.getLocalPoint(foe.getX() - 5, foe.getY()))) {
-//			System.out.println("Left collision");
-			System.out.println(foe.getX() + " " + foe.getY());
-			return true;
-		} else {
-			return false;
-		}
+		return  (foreground.contains(foe.getX(), foe.getY()));
 	}
 
 	private boolean isRightCollision() {
-		if (foreground.contains(foe.getX() + foe.getWidth(), foe.getY())) {
-//		if (foreground.contains(foreground.getLocalPoint(foe.getX() + foe.getWidth() + 5, foe.getY()))) {
-//			System.out.println("Right collision");
-			System.out.println(foe.getX() + " " + foe.getY());
-			return true;
-		} else {
-			return false;
-		}
+		return  (foreground.contains(foe.getX() + foe.getWidth(), foe.getY()));
 	}
 
-	public void setDead() {
+	private boolean isOnGround() {
+		return (foreground.contains(foe.getX() + foe.getWidth() / 2, foe.getY() + foe.getHeight()));
+	}
+
+	public void kill() {
 		isDead = true;
 	}
 }
