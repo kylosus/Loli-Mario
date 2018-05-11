@@ -1,3 +1,5 @@
+package Builders;
+
 import Builders.Core;
 import acm.graphics.*;
 
@@ -28,7 +30,7 @@ public class Background extends GCompound {
 
 //		for (int i = 0; i <= AMOUNT_OF_SQUARES; i++) {
 //			add(new GImage(
-//					"Images/Background/Ground2.gif",
+//					"Images/Builders.Background/Ground2.gif",
 //					i * BRICK_WIDTH,
 //					HEIGHT * GROUND_SQUARE_RATIO
 //			));

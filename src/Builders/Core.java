@@ -20,6 +20,8 @@ public abstract class Core {
 	public static String Menu_Right_Button_hovered = "Images/Menu/Right Button hovered.png";
 	public static String Menu_Button_regular = "Images/Menu/Choice Button regular.png";
 	public static String Menu_Button_hovered = "Images/Menu/Choice Button hovered.png";
+	public static String Foes_Goomba_alive = "Images/Foes/Goomba alive.gif";
+	public static String Foes_Goomba_dead = "Images/Foes/Goomba dead.png";
 
 
 }

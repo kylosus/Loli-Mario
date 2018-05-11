@@ -1,6 +1,8 @@
+import Builders.Background;
 import Builders.Character;
+import Builders.Foreground;
 import Characters.*;
-import acm.graphics.GObject;
+import Foes.Goomba;
 import acm.graphics.GPoint;
 import acm.program.GraphicsProgram;
 
@@ -75,8 +77,12 @@ public class Main extends GraphicsProgram {
 		setBackground(new Color(84, 208, 249));
 
 //		Sound.playBackground();
+		Goomba goomba = new Goomba();
+		goomba.init(foreground, character.getX() + 500, getHeight());
+//		add(goomba, character.getX() + 500, getHeight());
+		add(goomba, character.getX() + 500, Foreground.REFERENCE_POINT - goomba.getHeight());
 		while (!isGameOver()) {
-			System.out.println("");
+//			System.out.println("");
 
 			if (!isJumping && !isOnGround()) {
 				character.move(0, CHARACTER_SPEED / 2);
@@ -84,11 +90,13 @@ public class Main extends GraphicsProgram {
 
 			if (RIGHT_KEY_PRESSED && !isRightCollision()) {
 				moveRight();
+				goomba.move(-FOREGROUND_SPEED, 0);
 				character.weapon.forward.move(FOREGROUND_SPEED, 0);
 			}
 
 			if (LEFT_KEY_PRESSED && !isLeftCollision()) {
 				moveLeft();
+				goomba.move(FOREGROUND_SPEED, 0);
 				character.weapon.forward.move(-FOREGROUND_SPEED, 0);
 			}
 

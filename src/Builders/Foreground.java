@@ -1,3 +1,5 @@
+package Builders;
+
 import Builders.Core;
 import Levels.Level;
 import Levels.Level_1;
@@ -67,30 +69,6 @@ public class Foreground extends GCompound implements Serializable {
 					entry.getKey()
 			);
 		}
-
-		/*
-		// Steps
-		add(
-				new Steps(),
-				random.nextInt(9400) + 1000,
-				REFERENCE_POINT - BRICK_WIDTH
-		);
-		add(
-				new Steps(),
-				random.nextInt(9400) + 1000,
-				REFERENCE_POINT - BRICK_WIDTH
-		);
-		add(
-				new Steps(),
-				random.nextInt(9400) + 1000,
-				REFERENCE_POINT - BRICK_WIDTH
-		);
-		add(
-				new Steps(),
-				random.nextInt(9400) + 1000,
-				REFERENCE_POINT - BRICK_WIDTH
-		);
-
-		*/
 	}
+
 }
