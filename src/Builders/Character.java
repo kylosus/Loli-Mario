@@ -20,7 +20,7 @@ public class Character extends GCompound implements Serializable {
 	public GImage Onscreen;
 	public Weapon weapon;
 	public GImage Large;
-	public double Speed = 7;
+	public double Speed = 1.4;
 
 	public Character() {
 		running = new Running();

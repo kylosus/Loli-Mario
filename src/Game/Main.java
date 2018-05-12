@@ -1,9 +1,13 @@
+package Game;
+
 import Builders.Background;
 import Builders.Character;
 import Builders.Foreground;
 import Characters.*;
+import Menu.StartMenu;
 import Objects.Foe;
 import Objects.Goomba;
+import acm.graphics.GObject;
 import acm.graphics.GPoint;
 import acm.program.GraphicsProgram;
 
@@ -28,16 +32,19 @@ public class Main extends GraphicsProgram {
 	private static double FOREGROUND_SPEED;
 	private static final double SPEED_MULTIPLIER = 1.5;
 	private final static double PAUSE_TIME_FINAL = 10;
-	public static double PAUSE_TIME = 5;
+	public static double PAUSE_TIME = 1;
 	private static boolean isJumping = false;
 	public static boolean RIGHT_KEY_PRESSED = false;
 	public static boolean LEFT_KEY_PRESSED = false;
 	public static boolean UP_KEY_PRESSED = false;
 	private static boolean SPACE_KEY_PRESSED = false;
 	private static boolean IS_FALLING = false;
-	private static int JUMP_AIR_TIME = 50;
-	private static final int JUMP_AIR_TIME_FINAL = 50;
-	private static GPoint intersectionPoint = new GPoint();
+	private static int JUMP_AIR_TIME = 250;
+	private static final int JUMP_AIR_TIME_FINAL = 250;
+	private static GPoint upIntersectionPoint = new GPoint();
+	private static GPoint downIntersectionPoint = new GPoint();
+	private static GPoint rightIntersectionPoint = new GPoint();
+	private static GPoint leftIntersectionPoint = new GPoint();
 	private static boolean isUpCollision = false;
 	public static boolean hasWeaponCrashed = false;
 	public static boolean canShoot = true;
@@ -75,21 +82,51 @@ public class Main extends GraphicsProgram {
 		setBackground(new Color(84, 208, 249));
 
 //		Sound.playBackground();
-//		Goomba goomba = new Goomba();
+		Goomba goomba = new Goomba(foreground);
 //		goomba.init(foreground);
-//		add(goomba, character.getX() + 500, Foreground.REFERENCE_POINT - goomba.getHeight());
+		Goomba goomba1 = new Goomba(foreground);
+//		goomba1.init(foreground);
+		Goomba goomba2 = new Goomba(foreground);
+//		goomba2.init(foreground);
+		add(goomba, character.getX() + 500, Foreground.REFERENCE_POINT - goomba.getHeight());
+		add(goomba1, character.getX() + 600, Foreground.REFERENCE_POINT - goomba.getHeight());
+		add(goomba2, character.getX() + 700, Foreground.REFERENCE_POINT - goomba.getHeight());
 //		add(goomba, 683, Foreground.REFERENCE_POINT - goomba.getHeight());
 
-//		FoeBuilder foe = new FoeBuilder(foreground);
+//		Objects.FoeBuilder foe = new Objects.FoeBuilder(foreground);
 
 //		add(foe, 500, 100);
 //		add(new Goomba().init(foreground), 500, 0);
-		FoeBuilder foe = new FoeBuilder(foreground);
-		add(foe);
+
+
+//		FoeBuilder foe = new FoeBuilder(foreground);
+//		add(foe);
 
 		character.setLocation(0, character.getY());
 		while (!isGameOver()) {
 //			System.out.println("");
+
+
+			if (getElementAt(downIntersectionPoint) instanceof Goomba) {
+				if (!((Goomba) getElementAt(downIntersectionPoint)).die()) {
+					if (((Goomba) getElementAt(downIntersectionPoint)).isInterractible) {
+						break;
+					}
+				} else {
+					JUMP_AIR_TIME = 70;
+					UP_KEY_PRESSED = true;
+					IS_FALLING = false;
+					jump();
+				}
+			}
+
+			if (isRightCollisionFoe(character)) {
+				break;
+			}
+
+			if (isLeftCollisionFoe(character)) {
+				break;
+			}
 
 //			if (goomba.isInterractible && character.getBounds().intersects(goomba.getBounds())) {
 //				if (!isOnGround()) {
@@ -104,43 +141,46 @@ public class Main extends GraphicsProgram {
 //			}
 
 
-			if (foe.contains(character.getX() + character.getWidth() / 2, character.getY() + character.getHeight())) {
-				if (!isOnGround()) {
-					if (foe.getObjectAt(character.getX() + character.getWidth() / 2, character.getY() + character.getHeight()).isInterractible) {
-						foe.getObjectAt(character.getX() + character.getWidth() / 2, character.getY() + character.getHeight()).die();
-
-						JUMP_AIR_TIME = 70;
-						UP_KEY_PRESSED = true;
-						IS_FALLING = false;
-						jump();
-					}
-				} else if (foe.getObjectAt(character.getX() + character.getWidth() / 2, character.getY() + character.getHeight()).isInterractible) {
-					break;
-				}
-			}
+//			if (foe.contains(character.getX() + character.getWidth() / 2, character.getY() + character.getHeight())) {
+//				if (!isOnGround()) {
+//					if (foe.getObjectAt(foe.getLocalPoint(character.getX() + character.getWidth() / 2, character.getY() + character.getHeight())).isInterractible) {
+//						foe.getObjectAt(foe.getLocalPoint(character.getX() + character.getWidth() / 2, character.getY() + character.getHeight())).die();
+//
+//						JUMP_AIR_TIME = 70;
+//						UP_KEY_PRESSED = true;
+//						IS_FALLING = false;
+//						jump();
+//					}
+//				} else {
+//					break;
+//				}
+//			}
 
 			if (!isJumping && !isOnGround()) {
 				character.move(0, CHARACTER_SPEED / 2);
 			}
 
-			if (RIGHT_KEY_PRESSED && !isRightCollision()) {
+			if (RIGHT_KEY_PRESSED && !isRightCollision(character, foreground)) {
 				if (isCamera()) {
 					moveRight();
-					foe.move(-FOREGROUND_SPEED, 0);
+//					foe.move(-FOREGROUND_SPEED, 0);
+					goomba.move(-FOREGROUND_SPEED, 0);
+					goomba1.move(-FOREGROUND_SPEED, 0);
+					goomba2.move(-FOREGROUND_SPEED, 0);
 					character.weapon.forward.move(FOREGROUND_SPEED, 0);
 				} else {
 					character.move(FOREGROUND_SPEED, 0);
 				}
 			}
 
-			if (LEFT_KEY_PRESSED && !isLeftCollision()) {
+			if (LEFT_KEY_PRESSED && !isLeftCollision(character, foreground)) {
 				character.move(-FOREGROUND_SPEED, 0);
 //				moveLeft();
 //				goomba.move(FOREGROUND_SPEED, 0);
 				character.weapon.forward.move(-FOREGROUND_SPEED, 0);
 			}
 
-			if (SPACE_KEY_PRESSED && canShoot && !isRightCollision() && character.getHeight() > 60) {
+			if (SPACE_KEY_PRESSED && canShoot && !isRightCollision(character, foreground) && character.getHeight() > 60) {
 				character.setShootingForward();
 				add(
 						character.weapon.forward,
@@ -172,8 +212,8 @@ public class Main extends GraphicsProgram {
 			}
 
 			if (isUpCollision && !isOnGround()) {
-				if (foreground.contains(intersectionPoint)) {
-					new Thread(new MoveBlock(foreground.getElementAt(foreground.getLocalPoint(intersectionPoint)))).start();
+				if (foreground.contains(upIntersectionPoint)) {
+					new Thread(new MoveBlock(foreground.getElementAt(foreground.getLocalPoint(upIntersectionPoint)))).start();
 				}
 				isUpCollision = false;
 			}
@@ -245,7 +285,9 @@ public class Main extends GraphicsProgram {
 	}
 
 	private boolean isOnGround() {
-		if (foreground.contains(character.getX() + character.getWidth() / 2, character.getY() + character.getHeight())) {
+		upIntersectionPoint.setLocation(character.getX() + character.getWidth() / 2, character.getY());
+		downIntersectionPoint.setLocation(character.getX() + character.getWidth() / 2, character.getY() + character.getHeight());
+		if (foreground.contains(downIntersectionPoint)) {
 			return true;
 		} else {
 			JUMP_AIR_TIME = JUMP_AIR_TIME_FINAL;
@@ -274,9 +316,13 @@ public class Main extends GraphicsProgram {
 		);
 	}
 
-	private boolean isRightCollision() {
-		return (foreground.contains(character.getX() + character.getWidth(), character.getY() + character.getHeight() / 2) ||
-				foreground.contains(character.getX() + character.getWidth(), character.getY() + character.getHeight() - 10));
+	private boolean isRightCollision(GObject main, GObject collider) {
+		return (collider.contains(main.getX() + main.getWidth(), main.getY() + main.getHeight() / 2) ||
+				collider.contains(main.getX() + main.getWidth(), main.getY() + main.getHeight() - 10));
+	}
+
+	private boolean isRightCollisionFoe(GObject main) {
+		return ((getElementAt(main.getX() + main.getWidth(), main.getY() + main.getHeight() / 2)) instanceof Foe) && (((Foe) getElementAt(main.getX() + main.getWidth(), main.getY() + main.getHeight() / 2)).isInterractible);
 	}
 
 	private void moveRight() {
@@ -284,9 +330,13 @@ public class Main extends GraphicsProgram {
 		foreground.move(-FOREGROUND_SPEED, 0);
 	}
 
-	private boolean isLeftCollision() {
-		return (foreground.contains(character.getX(), character.getY() + character.getHeight() / 2) ||
-				foreground.contains(character.getX(), character.getY() + character.getHeight() - 10));
+	private boolean isLeftCollision(GObject main, GObject collider) {
+		return (collider.contains(main.getX(), main.getY() + main.getHeight() / 2) ||
+				collider.contains(main.getX(), main.getY() + main.getHeight() - 10));
+	}
+
+	private boolean isLeftCollisionFoe(GObject main) {
+		return (getElementAt(main.getX(), main.getY() + main.getHeight() / 2) instanceof Foe) && (((Foe) getElementAt(main.getX(), main.getY() + main.getHeight() / 2)).isInterractible);
 	}
 
 	private void moveLeft() {
@@ -345,19 +395,19 @@ public class Main extends GraphicsProgram {
 	private boolean isUpCollision() {
 //		if (foreground.contains(character.getX(), character.getY())) {
 //			isUpCollision = true;
-//			intersectionPoint.setLocation(character.getX() + character.getWidth() / 2, character.getY());
+//			upIntersectionPoint.setLocation(character.getX() + character.getWidth() / 2, character.getY());
 //			return true;
 //		}
 //
 //		if (foreground.contains(character.getX() + character.getWidth(), character.getY())) {
 //			isUpCollision = true;
-//			intersectionPoint.setLocation(character.getX() + character.getWidth() / 2, character.getY());
+//			upIntersectionPoint.setLocation(character.getX() + character.getWidth() / 2, character.getY());
 //			return true;
 //		}
 
 		if (foreground.contains(character.getX() + character.getWidth() / 2, character.getY())) {
 			isUpCollision = true;
-			intersectionPoint.setLocation(character.getX() + character.getWidth() / 2, character.getY());
+//			upIntersectionPoint.setLocation(character.getX() + character.getWidth() / 2, character.getY());
 			return true;
 		} else {
 			isUpCollision = false;

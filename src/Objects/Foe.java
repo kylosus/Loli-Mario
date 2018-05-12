@@ -19,19 +19,23 @@ public class Foe extends GCompound {
 		this.Onscreen = new GImage(alive.getImage());
 	}
 
-	public void die() {
-		isInterractible = false;
-		Onscreen.setImage(dead.getImage());
-		runner.kill();
-		add(points);
-		new Thread(() -> {
-			for (int i = 0; i < 50; i++) {
-				points.move(0, -3);
-				pause(50);
-			}
-			remove(Onscreen);
-			remove(points);
-		}).start();
+	public boolean die() { // Returns true if killed
+		if (isInterractible) {
+			isInterractible = false;
+			Onscreen.setImage(dead.getImage());
+			runner.kill();
+			add(points);
+			new Thread(() -> {
+				for (int i = 0; i < 100; i++) {
+					points.move(0, -1);
+					pause(5);
+				}
+				remove(Onscreen);
+				remove(points);
+			}).start();
+			return true;
+		}
+		return false;
 	}
 
 

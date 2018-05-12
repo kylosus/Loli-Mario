@@ -1,8 +1,11 @@
 package Builders;
 
 import Builders.Core;
+import Game.Main;
 import Levels.Level;
 import Levels.Level_1;
+import Objects.FoeBuilder;
+import Objects.Goomba;
 import acm.graphics.GCompound;
 import acm.graphics.GImage;
 import acm.graphics.GPoint;
@@ -14,9 +17,9 @@ import java.util.Map;
 import java.util.Random;
 
 public class Foreground extends GCompound implements Serializable {
-//	public static final int AMOUNT_OF_SQUARES = 300;
+	//	public static final int AMOUNT_OF_SQUARES = 300;
 	public static final int BRICK_WIDTH = 32;
-//	public static final double GROUND_SQUARE_RATIO = 0.75
+	//	public static final double GROUND_SQUARE_RATIO = 0.75
 	public static double REFERENCE_POINT;
 //	private static Random random = new Random();
 

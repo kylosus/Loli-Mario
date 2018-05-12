@@ -1,3 +1,5 @@
+package Menu;
+
 import acm.graphics.GCompound;
 import acm.graphics.GImage;
 import acm.graphics.GLabel;

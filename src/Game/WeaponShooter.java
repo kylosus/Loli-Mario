@@ -1,6 +1,6 @@
-import Actions.State;
-import Characters.Madoka;
-import Characters.Weapon;
+package Game;
+
+import Game.Main;
 import acm.graphics.GImage;
 import acm.graphics.GPoint;
 import acm.program.GraphicsProgram;

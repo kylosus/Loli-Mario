@@ -1,3 +1,5 @@
+package Game;
+
 import acm.graphics.GObject;
 import acm.program.GraphicsProgram;
 

@@ -1,8 +1,12 @@
+package Objects;
+
 import Builders.Foreground;
+import Game.Main;
 import Levels.Level;
 import Objects.Foe;
 import Objects.Goomba;
 import acm.graphics.GCompound;
+import acm.graphics.GPoint;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -45,7 +49,12 @@ public class FoeBuilder extends GCompound {
 //	}
 
 	public Foe getObjectAt(double x, double y) {
-		return (Foe)(getElementAt(x, y));
+		return (Foe) (getElementAt(x, y));
+	}
+
+	public Foe getObjectAt(GPoint point) {
+		return (Foe)(getElementAt(point));
+
 	}
 
 

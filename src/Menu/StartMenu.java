@@ -1,4 +1,7 @@
+package Menu;
+
 import Builders.Core;
+import Game.Main;
 import acm.graphics.GCompound;
 import acm.graphics.GImage;
 import acm.graphics.GLabel;
@@ -38,7 +41,7 @@ public class StartMenu extends GCompound {
 	private MenuItem Play_Button = new MenuItem(Core.Menu_Button_regular, Core.Menu_Button_hovered, "Play", new Callable<Void>() {
 		@Override
 		public Void call() throws Exception {
-//			remove(Main.StartMenu);
+//			remove(Game.Main.Menu.StartMenu);
 			Main.character.setLocation(WIDTH / 3 - Main.character.getWidth(), Main.character.getHeight());
 			Main.isInMenu = false;
 			return null;
