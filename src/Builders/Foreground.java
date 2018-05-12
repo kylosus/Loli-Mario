@@ -6,6 +6,7 @@ import Levels.Level;
 import Levels.Level_1;
 import Objects.FoeBuilder;
 import Objects.Goomba;
+import Objects.QuestionBlock;
 import acm.graphics.GCompound;
 import acm.graphics.GImage;
 import acm.graphics.GPoint;
@@ -13,6 +14,7 @@ import acm.graphics.GPoint;
 import java.io.FileOutputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
+import java.util.Iterator;
 import java.util.Map;
 import java.util.Random;
 
@@ -56,6 +58,15 @@ public class Foreground extends GCompound implements Serializable {
 					x += BRICK_WIDTH;
 				}
 			}
+
+			for (GPoint point : level.QuestionBlock) {
+				if (getElementAt(point) == null) {
+					add(new QuestionBlock(), point);
+				} else {
+					remove(getElementAt(point));
+					add(new QuestionBlock(), point);
+				}
+			}
 		}
 
 		for (Map.Entry<GImage, Double> entry : level.Tube.entrySet()) {
@@ -72,6 +83,10 @@ public class Foreground extends GCompound implements Serializable {
 					entry.getKey()
 			);
 		}
+//		QuestionBlock block = new QuestionBlock();
+//		add(block, 200, 300);
+//		add(block.object, 200, 300);
+//		add(block, block.object.getLocation());
 	}
 
 }

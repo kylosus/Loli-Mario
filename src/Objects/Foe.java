@@ -8,14 +8,14 @@ public class Foe extends GCompound {
 	public GImage Onscreen;
 	public GImage alive;
 	public GImage dead;
-	public GImage points;
+	public Score score;
 	public boolean isInterractible = true;
 	public Runner runner;
 
-	public Foe(GImage alive, GImage dead, GImage points) {
+	public Foe(GImage alive, GImage dead) {
 		this.alive = alive;
 		this.dead = dead;
-		this.points = points;
+		this.score = new Score();
 		this.Onscreen = new GImage(alive.getImage());
 	}
 
@@ -24,14 +24,14 @@ public class Foe extends GCompound {
 			isInterractible = false;
 			Onscreen.setImage(dead.getImage());
 			runner.kill();
-			add(points);
+			add(score);
 			new Thread(() -> {
 				for (int i = 0; i < 100; i++) {
-					points.move(0, -1);
+					score.move(0, -1);
 					pause(5);
 				}
 				remove(Onscreen);
-				remove(points);
+				remove(score);
 			}).start();
 			return true;
 		}

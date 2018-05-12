@@ -14,6 +14,7 @@ public class Level_1 extends Level {
 		initiate_Ground_High();
 		initiate_Tube();
 		initiate_Steps();
+		initiate_QuestionBlock();
 	}
 
 	private void initiate_Ground_low() {
@@ -53,5 +54,21 @@ public class Level_1 extends Level {
 		Steps.put(new GPoint(153 * Level.Brick_Width, HEIGHT - 4 * Level.Brick_Width + 1 * Level.Brick_Width), 5);
 		Steps.put(new GPoint(160 * Level.Brick_Width, HEIGHT - 4 * Level.Brick_Width + 1 * Level.Brick_Width), -4);
 		Steps.put(new GPoint(188 * Level.Brick_Width, HEIGHT - 8 * Level.Brick_Width + 5 * Level.Brick_Width), 8);
+	}
+
+	private void initiate_QuestionBlock() {
+		QuestionBlock.add(new GPoint(17 * Level.Brick_Width, HEIGHT - 4 * Level.Brick_Width - 2 * Level.Brick_Width));
+		QuestionBlock.add(new GPoint(22 * Level.Brick_Width, HEIGHT - 4 * Level.Brick_Width - 2 * Level.Brick_Width));
+		QuestionBlock.add(new GPoint(23 * Level.Brick_Width, HEIGHT - 10 * Level.Brick_Width - 2 * Level.Brick_Width));
+		QuestionBlock.add(new GPoint(24 * Level.Brick_Width, HEIGHT - 4 * Level.Brick_Width - 2 * Level.Brick_Width));
+		QuestionBlock.add(new GPoint(40 * Level.Brick_Width, HEIGHT - 10 * Level.Brick_Width - 2 * Level.Brick_Width));
+		QuestionBlock.add(new GPoint(70 * Level.Brick_Width, HEIGHT - 10 * Level.Brick_Width - 2 * Level.Brick_Width));
+		QuestionBlock.add(new GPoint(77 * Level.Brick_Width, HEIGHT - 4 * Level.Brick_Width - 2 * Level.Brick_Width));
+		QuestionBlock.add(new GPoint(83 * Level.Brick_Width, HEIGHT - 4 * Level.Brick_Width - 2 * Level.Brick_Width));
+		QuestionBlock.add(new GPoint(86 * Level.Brick_Width, HEIGHT - 4 * Level.Brick_Width - 2 * Level.Brick_Width));
+		QuestionBlock.add(new GPoint(86 * Level.Brick_Width, HEIGHT - 10 * Level.Brick_Width - 2 * Level.Brick_Width));
+		QuestionBlock.add(new GPoint(89 * Level.Brick_Width, HEIGHT - 4 * Level.Brick_Width - 2 * Level.Brick_Width));
+		QuestionBlock.add(new GPoint(107 * Level.Brick_Width, HEIGHT - 10 * Level.Brick_Width - 2 * Level.Brick_Width));
+		QuestionBlock.add(new GPoint(148 * Level.Brick_Width, HEIGHT - 10 * Level.Brick_Width - 2 * Level.Brick_Width));
 	}
 }

@@ -2,11 +2,15 @@ package Game;
 
 import Builders.Background;
 import Builders.Character;
+import Builders.Core;
 import Builders.Foreground;
 import Characters.*;
 import Menu.StartMenu;
 import Objects.Foe;
 import Objects.Goomba;
+import Objects.PowerUpObject;
+import Objects.QuestionBlock;
+import acm.graphics.GImage;
 import acm.graphics.GObject;
 import acm.graphics.GPoint;
 import acm.program.GraphicsProgram;
@@ -37,6 +41,7 @@ public class Main extends GraphicsProgram {
 	public static boolean RIGHT_KEY_PRESSED = false;
 	public static boolean LEFT_KEY_PRESSED = false;
 	public static boolean UP_KEY_PRESSED = false;
+	public static boolean canJump = true;
 	private static boolean SPACE_KEY_PRESSED = false;
 	private static boolean IS_FALLING = false;
 	private static int JUMP_AIR_TIME = 250;
@@ -82,11 +87,11 @@ public class Main extends GraphicsProgram {
 		setBackground(new Color(84, 208, 249));
 
 //		Sound.playBackground();
-		Goomba goomba = new Goomba(foreground);
+		Goomba goomba = (Goomba) (new Goomba().init(foreground));
 //		goomba.init(foreground);
-		Goomba goomba1 = new Goomba(foreground);
+		Goomba goomba1 = (Goomba) (new Goomba().init(foreground));
 //		goomba1.init(foreground);
-		Goomba goomba2 = new Goomba(foreground);
+		Goomba goomba2 = (Goomba) (new Goomba().init(foreground));
 //		goomba2.init(foreground);
 		add(goomba, character.getX() + 500, Foreground.REFERENCE_POINT - goomba.getHeight());
 		add(goomba1, character.getX() + 600, Foreground.REFERENCE_POINT - goomba.getHeight());
@@ -101,6 +106,10 @@ public class Main extends GraphicsProgram {
 
 //		FoeBuilder foe = new FoeBuilder(foreground);
 //		add(foe);
+
+
+		GImage shroom1;
+		GImage shroom2;
 
 		character.setLocation(0, character.getY());
 		while (!isGameOver()) {
@@ -213,9 +222,17 @@ public class Main extends GraphicsProgram {
 
 			if (isUpCollision && !isOnGround()) {
 				if (foreground.contains(upIntersectionPoint)) {
-					new Thread(new MoveBlock(foreground.getElementAt(foreground.getLocalPoint(upIntersectionPoint)))).start();
+					if (foreground.getElementAt(foreground.getLocalPoint(upIntersectionPoint)) instanceof QuestionBlock) {
+						QuestionBlock block = (QuestionBlock)foreground.getElementAt(foreground.getLocalPoint(upIntersectionPoint));
+						System.out.println("It is a question block");
+						if (block.isAlive) {
+							block.moveObject();
+						}
+					} else {
+						new Thread(new MoveBlock(foreground.getElementAt(foreground.getLocalPoint(upIntersectionPoint)))).start();
+					}
+					isUpCollision = false;
 				}
-				isUpCollision = false;
 			}
 
 			if ((IS_FALLING && !isOnGround())) {
@@ -254,14 +271,20 @@ public class Main extends GraphicsProgram {
 					LEFT_KEY_PRESSED = true;
 					break;
 				case KeyEvent.VK_UP:
-					if (isOnGround()) {
-						character.jumpForward();
-						UP_KEY_PRESSED = true;
-						IS_FALLING = false;
+					if (canJump) {
+						canJump = false;
+						if (isOnGround()) {
+							character.jumpForward();
+							UP_KEY_PRESSED = true;
+							IS_FALLING = false;
+						} else {
+							break;
+						}
 					}
 					break;
 				case KeyEvent.VK_SPACE:
 					SPACE_KEY_PRESSED = true;
+					break;
 
 			}
 		}
@@ -280,6 +303,10 @@ public class Main extends GraphicsProgram {
 					break;
 				case KeyEvent.VK_SPACE:
 					SPACE_KEY_PRESSED = false;
+					break;
+				case KeyEvent.VK_UP:
+					canJump = true;
+					break;
 			}
 		}
 	}
@@ -290,9 +317,9 @@ public class Main extends GraphicsProgram {
 		if (foreground.contains(downIntersectionPoint)) {
 			return true;
 		} else {
-			JUMP_AIR_TIME = JUMP_AIR_TIME_FINAL;
-			IS_FALLING = true;
-			System.out.println("It is on air");
+//			JUMP_AIR_TIME = JUMP_AIR_TIME_FINAL;
+//			IS_FALLING = true;
+//			System.out.println("It is on air");
 			return false;
 		}
 	}

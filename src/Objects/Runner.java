@@ -2,53 +2,54 @@ package Objects;
 
 import Builders.Foreground;
 import Game.Main;
+import acm.graphics.GObject;
 import acm.program.GraphicsProgram;
 
 public class Runner extends GraphicsProgram implements Runnable {
-	private Foe foe;
-	private Foreground foreground;
+	private GObject object;
+	private Foreground ground;
 	private boolean isDead = false;
 	private boolean right = true;
 	private boolean left = false;
 
 
-	public Runner(Foe foe, Foreground foreground) {
-		this.foe = foe;
-		this.foreground = foreground;
+	public Runner(GObject object, Foreground ground) {
+		this.object = object;
+		this.ground = ground;
 	}
 
 	@Override
 	public void run() {
 		while (!isDead) {
 			while (!isRightCollision() && right && !isDead && isOnGround()) {
-				foe.move(1, 0);
+				object.move(1, 0);
 				pause(4);
 			}
 			left = true;
 			right = false;
 			while (!isLeftCollision() && left && !isDead && isOnGround()) {
-				foe.move(-1, 0);
+				object.move(-1, 0);
 				pause(4);
 			}
 			left = false;
 			right = true;
 			while (!isOnGround()) {
-				foe.move(0, 1);
+				object.move(0, 1);
 				pause(4);
 			}
 		}
 	}
 
 	private boolean isLeftCollision() {
-		return  (Main.foreground.contains(foe.getX(), foe.getY()));
+		return  (ground.contains(object.getX() - 1, object.getY()));
 	}
 
 	private boolean isRightCollision() {
-		return  (Main.foreground.contains(foe.getX() + foe.getWidth() + 2, foe.getY()));
+		return  (ground.contains(object.getX() + object.getWidth() + 2, object.getY()));
 	}
 
 	private boolean isOnGround() {
-		return (Main.foreground.contains(foe.getX() + foe.getWidth() / 2, foe.getY() + foe.getHeight()));
+		return (ground.contains(object.getX() + object.getWidth() / 2, object.getY() + object.getHeight() + 1));
 	}
 
 	public void kill() {

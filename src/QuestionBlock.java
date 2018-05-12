@@ -3,7 +3,7 @@ import acm.graphics.GImage;
 
 public class QuestionBlock extends GCompound {
 
-	private GImage block = new GImage("Images/OBJ/QuestionBlock.gif");
+	private GImage block = new GImage("Images/OBJ/QuestionBlock_alive.gif");
 	private final double SPEED = 5;
 
 	public QuestionBlock() {

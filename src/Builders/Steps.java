@@ -7,7 +7,6 @@ public class Steps extends GCompound {
 
 	private static String step = "Images/Background/Block.png";
 	private static final double stepWidth = 32;
-	private static final int limitOfSteps = 8;
 
 	public Steps(int amountOfSteps) {
 

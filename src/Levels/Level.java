@@ -4,14 +4,12 @@ import acm.graphics.GImage;
 import acm.graphics.GPoint;
 
 import java.util.ArrayList;
-import java.util.BitSet;
 import java.util.HashMap;
-import java.util.Map;
 
 public abstract class Level {
 	public static final double Brick_Width = 32;
 	double REFERENCE_POINT, WIDTH, HEIGHT;
-	ArrayList<GPoint> QuestionBlock = new ArrayList<>();
+	public ArrayList<GPoint> QuestionBlock = new ArrayList<>();
 	public HashMap<GPoint, Integer> Ground_High = new HashMap<>();
 	public HashMap<GPoint, Integer> Ground_Low = new HashMap<>();
 	public HashMap<GImage, Double> Tube = new HashMap<>();
