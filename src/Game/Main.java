@@ -6,10 +6,7 @@ import Builders.Core;
 import Builders.Foreground;
 import Characters.*;
 import Menu.StartMenu;
-import Objects.Foe;
-import Objects.Goomba;
-import Objects.PowerUpObject;
-import Objects.QuestionBlock;
+import Objects.*;
 import acm.graphics.GImage;
 import acm.graphics.GObject;
 import acm.graphics.GPoint;
@@ -108,12 +105,13 @@ public class Main extends GraphicsProgram {
 //		add(foe);
 
 
-		GImage shroom1;
-		GImage shroom2;
+		QuestionBlock shroom = foreground.getRandomQuestionBlock();
+		shroom.convertToShroom();
+		foreground.add(shroom);
+		System.out.println(shroom.getX());
 
 		character.setLocation(0, character.getY());
 		while (!isGameOver()) {
-//			System.out.println("");
 
 
 			if (getElementAt(downIntersectionPoint) instanceof Goomba) {
@@ -220,13 +218,27 @@ public class Main extends GraphicsProgram {
 				jump();
 			}
 
+			if (character.getBounds().intersects(shroom.object.getBounds())) {
+				shroom.object.runner.kill();
+				shroom.object.die();
+			}
+
+
+			// What have I done
 			if (isUpCollision && !isOnGround()) {
+				if (shroom.contains(upIntersectionPoint) && shroom.isAlive) {
+					add(shroom.object, shroom.getLocation());
+					shroom.moveObject();
+					new Thread(shroom.object.runner = new Runner(shroom.object, foreground)).start();
+					System.out.println("Yes");
+				}
 				if (foreground.contains(upIntersectionPoint)) {
 					if (foreground.getElementAt(foreground.getLocalPoint(upIntersectionPoint)) instanceof QuestionBlock) {
-						QuestionBlock block = (QuestionBlock)foreground.getElementAt(foreground.getLocalPoint(upIntersectionPoint));
+						QuestionBlock block = (QuestionBlock) foreground.getElementAt(foreground.getLocalPoint(upIntersectionPoint));
 						System.out.println("It is a question block");
 						if (block.isAlive) {
 							block.moveObject();
+							new Thread(new MoveBlock(block)).start();
 						}
 					} else {
 						new Thread(new MoveBlock(foreground.getElementAt(foreground.getLocalPoint(upIntersectionPoint)))).start();

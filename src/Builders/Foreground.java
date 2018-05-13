@@ -7,6 +7,7 @@ import Levels.Level_1;
 import Objects.FoeBuilder;
 import Objects.Goomba;
 import Objects.QuestionBlock;
+import Objects.Shroom;
 import acm.graphics.GCompound;
 import acm.graphics.GImage;
 import acm.graphics.GPoint;
@@ -23,15 +24,17 @@ public class Foreground extends GCompound implements Serializable {
 	public static final int BRICK_WIDTH = 32;
 	//	public static final double GROUND_SQUARE_RATIO = 0.75
 	public static double REFERENCE_POINT;
-//	private static Random random = new Random();
+	//	private static Random random = new Random();
+	private Level_1 level;
 
 	public Foreground(double WIDTH, double HEIGHT) {
 
 		REFERENCE_POINT = HEIGHT - (2 * BRICK_WIDTH);
 
-		add(Core.SakuraTree);
+//		add(Core.SakuraTree);
 
-		Level_1 level = new Level_1(REFERENCE_POINT, WIDTH, HEIGHT);
+		level = new Level_1(REFERENCE_POINT, WIDTH, HEIGHT);
+
 		{
 			double x, y, dy = 0;
 
@@ -87,6 +90,12 @@ public class Foreground extends GCompound implements Serializable {
 //		add(block, 200, 300);
 //		add(block.object, 200, 300);
 //		add(block, block.object.getLocation());
+	}
+
+	public QuestionBlock getRandomQuestionBlock() {
+		return  (QuestionBlock)getElementAt(level.QuestionBlock.get(new Random(8).nextInt(level.QuestionBlock.size())).getLocation());
+//		questionBlock = new QuestionBlock(new Shroom());
+//		return questionBlock;
 	}
 
 }

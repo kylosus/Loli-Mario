@@ -1,11 +1,13 @@
 package Objects;
 
 import Builders.Core;
-import acm.graphics.GCompound;
 import acm.graphics.GImage;
 
-public class Shroom extends GCompound {
+public class Shroom extends PowerUpObject {
+
 	public Shroom() {
-		add(new GImage(Core.Mushroom_red));
+		super(Core.Mushroom_red, 1000);
+		add(image);
+		this.isShroom = true;
 	}
 }
