@@ -67,7 +67,9 @@ public class Character extends GCompound implements Serializable {
 	}
 
 	public void setRunningForward() {
+//		remove(current);
 		current.setImage(this.running.state.forward.getImage());
+//		add(current);
 	}
 
 	public void setRunningBackward() {
@@ -75,11 +77,11 @@ public class Character extends GCompound implements Serializable {
 
 	}
 
-	public void setCurrent(GImage image) {
-		current = image;
-	}
+//	public void setCurrent(GImage image) {
+//		current = image;
+//	}
 
-	public void jumpForward() {
+	public void setJumpingForward() {
 		current.setImage(this.jumping.state.forward.getImage());
 	}
 
@@ -90,6 +92,11 @@ public class Character extends GCompound implements Serializable {
 	public void setShootingForward() {
 		current.setImage(this.shooting.state.forward.getImage());
 	}
+
+	public void setImage(String image) {
+		current.setImage(image);
+	}
+
 }
 
 

@@ -11,7 +11,7 @@ public class Madoka extends Character implements Serializable {
 	public static String Name = "Kaname Madoka";
 	public static String Age = "14";
 	public static String WeaponName = "Rose branch bow";
-	public static GImage Onscreen = new GImage("Images/Marios/Madoka/MadokaStandStillForward.gif");
+//	public static GImage Onscreen = new GImage("Images/Marios/Madoka/MadokaStandStillForward.gif");
 	public static GImage StandStillForward = new GImage("Images/Marios/Madoka/MadokaStandStillForward.gif");
 	public static GImage StandStillBackward = new GImage("Images/Marios/Madoka/MadokaStandStillBackward.gif");
 	public static GImage RunForward = new GImage("Images/Marios/Madoka/MadokaRunForward.gif");
@@ -63,7 +63,7 @@ public class Madoka extends Character implements Serializable {
 	}
 
 	public static Builders.Character init(Builders.Character character) {
-		character.setCurrent(StandStillForward);
+//		character.setCurrent(StandStillForward);
 		character.name = Name;
 		character.age = Age;
 

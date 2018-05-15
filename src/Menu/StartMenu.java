@@ -2,6 +2,7 @@ package Menu;
 
 import Builders.Core;
 import Game.Main;
+import Game.Sound;
 import acm.graphics.GCompound;
 import acm.graphics.GImage;
 import acm.graphics.GLabel;
@@ -22,20 +23,14 @@ public class StartMenu extends GCompound {
 	private GLabel age;
 	private GLabel weapon;
 
-	private MenuItem Left_Button = new MenuItem(Core.Menu_Left_Button_regular, Core.Menu_Left_Button_hovered, new Callable<Void>() {
-		@Override
-		public Void call() throws Exception {
-			changeCharacter();
-			return null;
-		}
+	private MenuItem Left_Button = new MenuItem(Core.Menu_Left_Button_regular, Core.Menu_Left_Button_hovered, () -> {
+		changeCharacter();
+		return null;
 	});
 
-	private MenuItem Right_Button = new MenuItem(Core.Menu_Right_Button_regular, Core.Menu_Right_Button_hovered, new Callable<Void>() {
-		@Override
-		public Void call() throws Exception {
-			changeCharacter();
-			return null;
-		}
+	private MenuItem Right_Button = new MenuItem(Core.Menu_Right_Button_regular, Core.Menu_Right_Button_hovered, () -> {
+		changeCharacter();
+		return null;
 	});
 
 	private MenuItem Play_Button = new MenuItem(Core.Menu_Button_regular, Core.Menu_Button_hovered, "Play", new Callable<Void>() {
@@ -48,13 +43,10 @@ public class StartMenu extends GCompound {
 		}
 	});
 
-	private MenuItem Map_Button = new MenuItem(Core.Menu_Button_regular, Core.Menu_Button_hovered, "Maps (not available yet)");
-	private MenuItem Exit_Button = new MenuItem(Core.Menu_Button_regular, Core.Menu_Button_hovered, "Exit", new Callable<Void>() {
-		@Override
-		public Void call() throws Exception {
-			System.exit(0);
-			return null;
-		}
+	private MenuItem Map_Button = new MenuItem(Core.Menu_Button_regular, Core.Menu_Button_hovered, "Music (not available yet)");
+	private MenuItem Exit_Button = new MenuItem(Core.Menu_Button_regular, Core.Menu_Button_hovered, "Exit", () -> {
+		System.exit(0);
+		return null;
 	});
 
 	public StartMenu(double WIDTH, double HEIGHT) {

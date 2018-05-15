@@ -2,7 +2,6 @@ package Game;
 
 import Builders.Background;
 import Builders.Character;
-import Builders.Core;
 import Builders.Foreground;
 import Characters.*;
 import Menu.StartMenu;
@@ -31,13 +30,13 @@ public class Main extends GraphicsProgram {
 	private static double CHARACTER_SPEED;
 	private static double BACKGROUND_SPEED;
 	private static double FOREGROUND_SPEED;
-	private static final double SPEED_MULTIPLIER = 1.5;
 	private final static double PAUSE_TIME_FINAL = 10;
 	public static double PAUSE_TIME = 1;
 	private static boolean isJumping = false;
 	public static boolean RIGHT_KEY_PRESSED = false;
 	public static boolean LEFT_KEY_PRESSED = false;
 	public static boolean UP_KEY_PRESSED = false;
+	private static boolean SPECIAL_KEY_PRESSED = false;
 	public static boolean canJump = true;
 	private static boolean SPACE_KEY_PRESSED = false;
 	private static boolean IS_FALLING = false;
@@ -51,6 +50,7 @@ public class Main extends GraphicsProgram {
 	public static boolean hasWeaponCrashed = false;
 	public static boolean canShoot = true;
 	public static GPoint Weapon_Crash_Point;
+	private static QuestionBlock ShroomBlock;
 
 
 	public void run() {
@@ -66,12 +66,19 @@ public class Main extends GraphicsProgram {
 		foreground = new Foreground(getWidth(), getHeight());
 		background = new Background(WIDTH, HEIGHT);
 
+		Sound.initiate();
+		Sound.playBackground();
 		StartMenu = new StartMenu(getWidth(), getHeight());
 		add(StartMenu);
 
 		while (isInMenu) {
 			System.out.println("In in Menu");
 		}
+
+		Sound.stopBackground();
+		Sound.playBGM();
+
+
 		add(background);
 		add(foreground);
 		add(character);
@@ -83,7 +90,7 @@ public class Main extends GraphicsProgram {
 
 		setBackground(new Color(84, 208, 249));
 
-//		Sound.playBackground();
+
 		Goomba goomba = (Goomba) (new Goomba().init(foreground));
 //		goomba.init(foreground);
 		Goomba goomba1 = (Goomba) (new Goomba().init(foreground));
@@ -105,12 +112,13 @@ public class Main extends GraphicsProgram {
 //		add(foe);
 
 
-		QuestionBlock shroom = foreground.getRandomQuestionBlock();
-		shroom.convertToShroom();
-		foreground.add(shroom);
-		System.out.println(shroom.getX());
+		initiateNewShroom();
+		System.out.println(ShroomBlock.getX());
 
 		character.setLocation(0, character.getY());
+
+		foreground.add(new GImage("Images/Special/waitwhat.png"), 14000, 200);
+
 		while (!isGameOver()) {
 
 
@@ -170,10 +178,12 @@ public class Main extends GraphicsProgram {
 			if (RIGHT_KEY_PRESSED && !isRightCollision(character, foreground)) {
 				if (isCamera()) {
 					moveRight();
-//					foe.move(-FOREGROUND_SPEED, 0);
 					goomba.move(-FOREGROUND_SPEED, 0);
 					goomba1.move(-FOREGROUND_SPEED, 0);
 					goomba2.move(-FOREGROUND_SPEED, 0);
+					if (!ShroomBlock.isAlive) {
+						ShroomBlock.object.move(-FOREGROUND_SPEED, 0);
+					}
 					character.weapon.forward.move(FOREGROUND_SPEED, 0);
 				} else {
 					character.move(FOREGROUND_SPEED, 0);
@@ -182,7 +192,9 @@ public class Main extends GraphicsProgram {
 
 			if (LEFT_KEY_PRESSED && !isLeftCollision(character, foreground)) {
 				character.move(-FOREGROUND_SPEED, 0);
-//				moveLeft();
+				if (character instanceof Homura) {
+					moveLeft();
+				}
 //				goomba.move(FOREGROUND_SPEED, 0);
 				character.weapon.forward.move(-FOREGROUND_SPEED, 0);
 			}
@@ -218,18 +230,24 @@ public class Main extends GraphicsProgram {
 				jump();
 			}
 
-			if (character.getBounds().intersects(shroom.object.getBounds())) {
-				shroom.object.runner.kill();
-				shroom.object.die();
+			if (character.getBounds().intersects(ShroomBlock.object.getBounds()) && ShroomBlock.object.runner != null) {
+				ShroomBlock.object.runner.kill();
+				ShroomBlock.object.die();
+				initiateNewShroom();
+//				character.setLocation(100, 100);
+//				remove(character);
+				foreground.add(character, character.getLocation()); // This is totally intentional, guys
+				changeCharacter();
+				add(character);
 			}
 
 
 			// What have I done
 			if (isUpCollision && !isOnGround()) {
-				if (shroom.contains(upIntersectionPoint) && shroom.isAlive) {
-					add(shroom.object, shroom.getLocation());
-					shroom.moveObject();
-					new Thread(shroom.object.runner = new Runner(shroom.object, foreground)).start();
+				if (ShroomBlock.contains(upIntersectionPoint) && ShroomBlock.isAlive) {
+					add(ShroomBlock.object, ShroomBlock.getLocation());
+					ShroomBlock.moveObject();
+					new Thread(ShroomBlock.object.runner = new Runner(ShroomBlock.object, foreground)).start();
 					System.out.println("Yes");
 				}
 				if (foreground.contains(upIntersectionPoint)) {
@@ -258,6 +276,61 @@ public class Main extends GraphicsProgram {
 //			}
 			}
 
+			if (SPECIAL_KEY_PRESSED) {
+
+				Long current = System.currentTimeMillis();
+
+
+				GImage yes = new GImage("Images/Special/yes.gif");
+				add(
+						yes,
+						character.getX() - (yes.getWidth() / 2 - character.getWidth() / 2),
+						character.getY() - (yes.getHeight() / 2 - character.getWidth() / 2)
+				);
+
+				while (System.currentTimeMillis() < current + 4290) ;
+				remove(yes);
+
+				foreground.move(50, -50);
+				pause(100);
+				foreground.move(-50, 50);
+				pause(100);
+				foreground.move(50, -50);
+				pause(100);
+				foreground.move(-50, 50);
+				pause(100);
+				foreground.move(50, -50);
+				pause(100);
+				foreground.move(50, -50);
+				pause(500);
+				foreground.move(-50, 50);
+				pause(100);
+				foreground.move(-50, 50);
+				pause(2000);
+
+				Sound.playSpecial();
+				pause(1500);
+				character.setLocation(100, 100);
+				character.setImage("Images/Special/glitchslow.gif");
+
+				goomba.runner.kill();
+				goomba1.runner.kill();
+				goomba2.runner.kill();
+
+				remove(goomba);
+				remove(goomba1);
+				remove(goomba2);
+
+				current = System.currentTimeMillis();
+
+				while (true) {
+					if (System.currentTimeMillis() >= current + 15700) {
+						character.setImage("Images/Special/glitchfast.gif");
+					}
+					moveRight();
+					pause(1);
+				}
+			}
 			pause(PAUSE_TIME);
 		}
 
@@ -284,9 +357,10 @@ public class Main extends GraphicsProgram {
 					break;
 				case KeyEvent.VK_UP:
 					if (canJump) {
+						Sound.playJump();
 						canJump = false;
 						if (isOnGround()) {
-							character.jumpForward();
+							character.setJumpingForward();
 							UP_KEY_PRESSED = true;
 							IS_FALLING = false;
 						} else {
@@ -297,7 +371,17 @@ public class Main extends GraphicsProgram {
 				case KeyEvent.VK_SPACE:
 					SPACE_KEY_PRESSED = true;
 					break;
-
+				case KeyEvent.VK_F:
+					SPECIAL_KEY_PRESSED = true;
+					break;
+				case KeyEvent.VK_Q:
+					Sound.playHover();
+					break;
+				case KeyEvent.VK_W:
+					Sound.playSelect();
+					break;
+				default:
+					Sound.playSelect();
 			}
 		}
 	}
@@ -319,6 +403,8 @@ public class Main extends GraphicsProgram {
 				case KeyEvent.VK_UP:
 					canJump = true;
 					break;
+				case KeyEvent.VK_F:
+					SPECIAL_KEY_PRESSED = false;
 			}
 		}
 	}
@@ -419,6 +505,13 @@ public class Main extends GraphicsProgram {
 		}
 	}
 
+	private void initiateNewShroom() {
+		ShroomBlock = foreground.getRandomQuestionBlock();
+		ShroomBlock.convertToShroom();
+		foreground.add(ShroomBlock);
+		System.out.println(ShroomBlock.getX());
+	}
+
 	private void die() {
 		for (int i = 0; i < JUMP_AIR_TIME_FINAL / 5; i++) {
 			character.move(0, -CHARACTER_SPEED * 2);
@@ -455,9 +548,9 @@ public class Main extends GraphicsProgram {
 	}
 
 	private void setCharacters() {
+		Characters.add(new Mami());
 		Characters.add(new Homura());
 		Characters.add(Madoka.init(character));
-		Characters.add(new Mami());
 	}
 
 	public static void changeCharacter() {

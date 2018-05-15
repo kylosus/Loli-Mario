@@ -1,5 +1,6 @@
 package Menu;
 
+import Game.Sound;
 import acm.graphics.GCompound;
 import acm.graphics.GImage;
 import acm.graphics.GLabel;
@@ -60,6 +61,7 @@ public class MenuItem extends GCompound {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				if (clickMethod != null) {
+					Sound.playSelect();
 					try {
 						clickMethod.call();
 						System.out.println("Click successful");
@@ -82,11 +84,13 @@ public class MenuItem extends GCompound {
 			@Override
 			public void mouseEntered(MouseEvent e) {
 				Onscreen.setImage(hovered);
+				Sound.playHover();
 			}
 
 			@Override
 			public void mouseExited(MouseEvent e) {
 				Onscreen.setImage(regular);
+				Sound.playHover();
 			}
 		});
 	}

@@ -93,7 +93,7 @@ public class Foreground extends GCompound implements Serializable {
 	}
 
 	public QuestionBlock getRandomQuestionBlock() {
-		return  (QuestionBlock)getElementAt(level.QuestionBlock.get(new Random(8).nextInt(level.QuestionBlock.size())).getLocation());
+		return  (QuestionBlock)getElementAt(level.QuestionBlock.get(new Random().nextInt(level.QuestionBlock.size())).getLocation());
 //		questionBlock = new QuestionBlock(new Shroom());
 //		return questionBlock;
 	}
