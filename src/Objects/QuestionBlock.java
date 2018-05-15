@@ -3,6 +3,7 @@ package Objects;
 import Builders.Core;
 import Builders.Foreground;
 import Game.Main;
+import Game.Sound;
 import acm.graphics.GCompound;
 import acm.graphics.GImage;
 
@@ -30,6 +31,7 @@ public class QuestionBlock extends GCompound {
 		if (isAlive) {
 			isAlive = false;
 			if (!this.object.isShroom) {
+				Sound.playCoin();
 				add(this.object);
 				object.sendBackward();
 				new Thread(() -> {
@@ -44,6 +46,7 @@ public class QuestionBlock extends GCompound {
 					remove(this.object);
 				}).start();
 			} else {
+//				Sound.playCoin();
 //				object.sendToFront();
 //				System.out.println("Object started");
 				new Thread(() -> {

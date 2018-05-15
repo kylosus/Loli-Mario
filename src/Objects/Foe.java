@@ -1,6 +1,7 @@
 package Objects;
 
 import Builders.Foreground;
+import Game.Sound;
 import acm.graphics.GCompound;
 import acm.graphics.GImage;
 
@@ -21,6 +22,7 @@ public class Foe extends GCompound {
 
 	public boolean die() { // Returns true if killed
 		if (isInterractible) {
+			Sound.playStomp();
 			isInterractible = false;
 			Onscreen.setImage(dead.getImage());
 			runner.kill();

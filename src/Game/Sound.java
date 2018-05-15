@@ -13,6 +13,10 @@ public class Sound {
 	private static final File HOVER = new File("Sounds/hover.wav");
 	private static final File SELECT = new File("Sounds/select.wav");
 	private static final File JUMP = new File("Sounds/jump.wav");
+	private static final File COIN = new File("Sounds/coin.wav");
+	private static final File BUMP = new File("Sounds/bump.wav");
+	private static final File STOMP = new File("Sounds/stomp.wav");
+	private static final File GLITCH = new File("Sounds/glitch.wav");
 	private static final File Special = new File("Sounds/special.wav");
 
 	public static boolean initiate() {
@@ -45,6 +49,14 @@ public class Sound {
 
 	public static void stopBackground() {
 		background.stop();
+	}
+
+	public static void stopBGM() {
+		bgm.stop();
+	}
+
+	public static void stopEffect() {
+		effect.stop();
 	}
 
 	public static void playSpecial() {
@@ -80,7 +92,47 @@ public class Sound {
 	public static void playJump() {
 		try {
 			effect = AudioSystem.getClip();
-			effect.open(AudioSystem.getAudioInputStream(HOVER));
+			effect.open(AudioSystem.getAudioInputStream(JUMP));
+			effect.start();
+		} catch (javax.sound.sampled.UnsupportedAudioFileException | java.io.IOException | javax.sound.sampled.LineUnavailableException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public static void playCoin() {
+		try {
+			effect = AudioSystem.getClip();
+			effect.open(AudioSystem.getAudioInputStream(COIN));
+			effect.start();
+		} catch (javax.sound.sampled.UnsupportedAudioFileException | java.io.IOException | javax.sound.sampled.LineUnavailableException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public static void playBump() {
+		try {
+			effect = AudioSystem.getClip();
+			effect.open(AudioSystem.getAudioInputStream(BUMP));
+			effect.start();
+		} catch (javax.sound.sampled.UnsupportedAudioFileException | java.io.IOException | javax.sound.sampled.LineUnavailableException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public static void playStomp() {
+		try {
+			effect = AudioSystem.getClip();
+			effect.open(AudioSystem.getAudioInputStream(STOMP));
+			effect.start();
+		} catch (javax.sound.sampled.UnsupportedAudioFileException | java.io.IOException | javax.sound.sampled.LineUnavailableException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public static void playGlitch() {
+		try {
+			effect = AudioSystem.getClip();
+			effect.open(AudioSystem.getAudioInputStream(GLITCH));
 			effect.start();
 		} catch (javax.sound.sampled.UnsupportedAudioFileException | java.io.IOException | javax.sound.sampled.LineUnavailableException e) {
 			e.printStackTrace();

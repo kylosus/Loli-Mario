@@ -254,11 +254,13 @@ public class Main extends GraphicsProgram {
 					if (foreground.getElementAt(foreground.getLocalPoint(upIntersectionPoint)) instanceof QuestionBlock) {
 						QuestionBlock block = (QuestionBlock) foreground.getElementAt(foreground.getLocalPoint(upIntersectionPoint));
 						System.out.println("It is a question block");
+//						Sound.playCoin();
 						if (block.isAlive) {
 							block.moveObject();
 							new Thread(new MoveBlock(block)).start();
 						}
 					} else {
+						Sound.playBump();
 						new Thread(new MoveBlock(foreground.getElementAt(foreground.getLocalPoint(upIntersectionPoint)))).start();
 					}
 					isUpCollision = false;
@@ -277,6 +279,8 @@ public class Main extends GraphicsProgram {
 			}
 
 			if (SPECIAL_KEY_PRESSED) {
+				Sound.stopBGM();
+				Sound.playGlitch();
 
 				Long current = System.currentTimeMillis();
 
@@ -308,6 +312,7 @@ public class Main extends GraphicsProgram {
 				foreground.move(-50, 50);
 				pause(2000);
 
+				Sound.stopEffect();
 				Sound.playSpecial();
 				pause(1500);
 				character.setLocation(100, 100);
@@ -344,6 +349,7 @@ public class Main extends GraphicsProgram {
 		setSize(1920, 580);
 	}
 
+	@Override
 	public void keyPressed(KeyEvent e) {
 		if (character != null) {
 			switch (e.getKeyCode()) {
@@ -357,9 +363,9 @@ public class Main extends GraphicsProgram {
 					break;
 				case KeyEvent.VK_UP:
 					if (canJump) {
-						Sound.playJump();
 						canJump = false;
 						if (isOnGround()) {
+							Sound.playJump();
 							character.setJumpingForward();
 							UP_KEY_PRESSED = true;
 							IS_FALLING = false;
