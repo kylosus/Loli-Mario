@@ -17,10 +17,11 @@ public class Mami extends Character {
 		this.still.state.backward = new GImage("Images/Marios/Mami/MamiStandStillBackward.gif");
 		this.running.state.forward = new GImage("Images/Marios/Mami/MamiRunForward.gif");
 		this.running.state.backward = new GImage("Images/Marios/Mami/MamiRunBackward.gif");
-		this.jumping.state.forward = new GImage("Images/Marios/Mami/MamiRunForward.gif");
-		this.jumping.state.backward = new GImage("Images/Marios/Mami/MamiRunBackward.gif");
+		this.jumping.state.forward = new GImage("Images/Marios/Mami/MamiStandStillForward.gif");
+		this.jumping.state.backward = new GImage("Images/Marios/Mami/MamiStandStillBackward.gif");
 		this.shooting.state.forward = new GImage("Images/Marios/Mami/MamiShootForward.gif");
 		this.weapon.forward = new GImage("Images/Marios/Mami/WeaponForward.png");
+		this.weapon.StartPoint = new GPoint(90,33);
 	}
 
 }

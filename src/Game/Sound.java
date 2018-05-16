@@ -16,6 +16,8 @@ public class Sound {
 	private static final File COIN = new File("Sounds/coin.wav");
 	private static final File BUMP = new File("Sounds/bump.wav");
 	private static final File STOMP = new File("Sounds/stomp.wav");
+	private static final File SHROOM = new File("Sounds/shroom.wav");
+	private static final File LEVELUP = new File("Sounds/levelup.wav");
 	private static final File GLITCH = new File("Sounds/glitch.wav");
 	private static final File Special = new File("Sounds/special.wav");
 
@@ -133,6 +135,27 @@ public class Sound {
 		try {
 			effect = AudioSystem.getClip();
 			effect.open(AudioSystem.getAudioInputStream(GLITCH));
+			effect.start();
+		} catch (javax.sound.sampled.UnsupportedAudioFileException | java.io.IOException | javax.sound.sampled.LineUnavailableException e) {
+			e.printStackTrace();
+		}
+	}
+
+
+	public static void playShroom() {
+		try {
+			effect = AudioSystem.getClip();
+			effect.open(AudioSystem.getAudioInputStream(SHROOM));
+			effect.start();
+		} catch (javax.sound.sampled.UnsupportedAudioFileException | java.io.IOException | javax.sound.sampled.LineUnavailableException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public static void playLevelup() {
+		try {
+			effect = AudioSystem.getClip();
+			effect.open(AudioSystem.getAudioInputStream(LEVELUP));
 			effect.start();
 		} catch (javax.sound.sampled.UnsupportedAudioFileException | java.io.IOException | javax.sound.sampled.LineUnavailableException e) {
 			e.printStackTrace();

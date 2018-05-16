@@ -127,26 +127,55 @@ public class Main extends GraphicsProgram implements Serializable {
 		while (!isGameOver()) {
 
 
-			if (getElementAt(downIntersectionPoint) instanceof Goomba) {
-				if (!((Goomba) getElementAt(downIntersectionPoint)).die()) {
-					if (((Goomba) getElementAt(downIntersectionPoint)).isInterractible) {
-						break;
-					}
+//			if (getElementAt(downIntersectionPoint) instanceof Goomba) {
+//				if (!((Goomba) getElementAt(downIntersectionPoint)).die()) {
+//					if (((Goomba) getElementAt(downIntersectionPoint)).isInterractible) {
+//						break;
+//					}
+//				} else {
+//					JUMP_AIR_TIME = 70;
+//					UP_KEY_PRESSED = true;
+//					IS_FALLING = false;
+//					jump();
+//				}
+//			}
+
+
+			if (character.getBounds().intersects(goomba.getBounds()) && goomba.isInterractible) {
+				if (!isOnGround()) {
+					goomba.die();
+					smallJump();
 				} else {
-					JUMP_AIR_TIME = 70;
-					UP_KEY_PRESSED = true;
-					IS_FALLING = false;
-					jump();
+					break;
 				}
 			}
 
-			if (isRightCollisionFoe(character)) {
-				break;
+			if (character.getBounds().intersects(goomba1.getBounds()) && goomba1.isInterractible) {
+				if (!isOnGround()) {
+					goomba1.die();
+					smallJump();
+				} else {
+					break;
+				}
 			}
 
-			if (isLeftCollisionFoe(character)) {
-				break;
+			if (character.getBounds().intersects(goomba2.getBounds()) && goomba2.isInterractible) {
+				if (!isOnGround()) {
+					goomba2.die();
+					smallJump();
+				} else {
+					break;
+				}
 			}
+
+
+//			if (isRightCollisionFoe(character)) {
+//				break;
+//			}
+//
+//			if (isLeftCollisionFoe(character)) {
+//				break;
+//			}
 
 //			if (goomba.isInterractible && character.getBounds().intersects(goomba.getBounds())) {
 //				if (!isOnGround()) {
@@ -212,6 +241,8 @@ public class Main extends GraphicsProgram implements Serializable {
 						character.getY() + character.weapon.StartPoint.getY()
 				);
 				new Thread(new WeaponShooter(character.weapon.forward)).start();
+				canShoot = false;
+				SPACE_KEY_PRESSED = false;
 			}
 
 			if (character.weapon.forward.getX() > character.getX() + 800) {
@@ -236,6 +267,7 @@ public class Main extends GraphicsProgram implements Serializable {
 			}
 
 			if (character.getBounds().intersects(ShroomBlock.object.getBounds()) && ShroomBlock.object.runner != null) {
+				Sound.playLevelup();
 				ShroomBlock.object.runner.kill();
 				ShroomBlock.object.die();
 				initiateNewShroom();
@@ -250,6 +282,7 @@ public class Main extends GraphicsProgram implements Serializable {
 			// What have I done
 			if (isUpCollision && !isOnGround()) {
 				if (ShroomBlock.contains(upIntersectionPoint) && ShroomBlock.isAlive) {
+					Sound.playShroom();
 					add(ShroomBlock.object, ShroomBlock.getLocation());
 					ShroomBlock.moveObject();
 					new Thread(ShroomBlock.object.runner = new Runner(ShroomBlock.object, foreground)).start();
@@ -407,6 +440,7 @@ public class Main extends GraphicsProgram implements Serializable {
 					break;
 				default:
 					Sound.playSelect();
+					break;
 			}
 		}
 	}
@@ -472,7 +506,7 @@ public class Main extends GraphicsProgram implements Serializable {
 	}
 
 	private boolean isRightCollisionFoe(GObject main) {
-		return ((getElementAt(main.getX() + main.getWidth(), main.getY() + main.getHeight() / 2)) instanceof Foe) && (((Foe) getElementAt(main.getX() + main.getWidth(), main.getY() + main.getHeight() / 2)).isInterractible);
+		return ((getElementAt(main.getX() + main.getWidth(), main.getY() + main.getHeight() * 2 / 3)) instanceof Foe) && (((Foe) getElementAt(main.getX() + main.getWidth(), main.getY() + main.getHeight() * 2 / 3)).isInterractible);
 	}
 
 	private void moveRight() {
@@ -486,12 +520,19 @@ public class Main extends GraphicsProgram implements Serializable {
 	}
 
 	private boolean isLeftCollisionFoe(GObject main) {
-		return (getElementAt(main.getX(), main.getY() + main.getHeight() / 2) instanceof Foe) && (((Foe) getElementAt(main.getX(), main.getY() + main.getHeight() / 2)).isInterractible);
+		return (getElementAt(main.getX(), main.getY() + main.getHeight() *  2 / 3) instanceof Foe) && (((Foe) getElementAt(main.getX(), main.getY() + main.getHeight() * 2 / 3)).isInterractible);
 	}
 
 	private void moveLeft() {
 		background.move(BACKGROUND_SPEED, 0);
 		foreground.move(FOREGROUND_SPEED, 0);
+	}
+
+	private void smallJump() {
+		JUMP_AIR_TIME = 70;
+		UP_KEY_PRESSED = true;
+		IS_FALLING = false;
+		jump();
 	}
 
 	private void jump() {
