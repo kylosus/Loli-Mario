@@ -8,7 +8,7 @@ import acm.graphics.GImage;
 
 import java.io.Serializable;
 
-public class Character extends GCompound implements Serializable {
+public class Character extends GCompound {
 	private Character character;
 	private static GImage current;
 	public Running running;

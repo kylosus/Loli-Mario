@@ -13,25 +13,27 @@ import acm.program.GraphicsProgram;
 
 import java.awt.Color;
 import java.awt.event.KeyEvent;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-public class Main extends GraphicsProgram {
+public class Main extends GraphicsProgram implements Serializable {
 
-	public static ArrayList<Character> Characters = new ArrayList<>();
+	private static ArrayList<Character> Characters = new ArrayList<>();
 	private static Iterator<Character> iterator = Characters.iterator();
 	public static Character character;
-	public static StartMenu StartMenu;
+	private static StartMenu StartMenu;
 	public static boolean isInMenu = true;
-	public static Background background;
+	private static Background background;
 	public static Foreground foreground;
+	public static Stats stats;
 	private static double WIDTH;
 	private static double HEIGHT;
 	private static double CHARACTER_SPEED;
 	private static double BACKGROUND_SPEED;
 	private static double FOREGROUND_SPEED;
 	private final static double PAUSE_TIME_FINAL = 10;
-	public static double PAUSE_TIME = 1;
+	private static double PAUSE_TIME = 1;
 	private static boolean isJumping = false;
 	public static boolean RIGHT_KEY_PRESSED = false;
 	public static boolean LEFT_KEY_PRESSED = false;
@@ -118,6 +120,9 @@ public class Main extends GraphicsProgram {
 		character.setLocation(0, character.getY());
 
 		foreground.add(new GImage("Images/Special/waitwhat.png"), 14000, 200);
+
+		stats = new Stats(getWidth(), getHeight());
+		add(stats, 0, stats.getHeight());
 
 		while (!isGameOver()) {
 
@@ -280,7 +285,6 @@ public class Main extends GraphicsProgram {
 
 			if (SPECIAL_KEY_PRESSED) {
 				Sound.stopBGM();
-				Sound.playGlitch();
 
 				Long current = System.currentTimeMillis();
 
@@ -296,23 +300,31 @@ public class Main extends GraphicsProgram {
 				remove(yes);
 
 				foreground.move(50, -50);
+				setBackground(Color.RED);
 				pause(100);
 				foreground.move(-50, 50);
+				setBackground(Color.BLUE);
 				pause(100);
 				foreground.move(50, -50);
+				setBackground(Color.YELLOW);
 				pause(100);
 				foreground.move(-50, 50);
+				setBackground(Color.MAGENTA);
 				pause(100);
 				foreground.move(50, -50);
+				setBackground(Color.ORANGE);
 				pause(100);
 				foreground.move(50, -50);
+				setBackground(Color.WHITE);
 				pause(500);
 				foreground.move(-50, 50);
+				setBackground(Color.PINK);
 				pause(100);
 				foreground.move(-50, 50);
+				setBackground(Color.BLACK);
+				stats.setWhite();
 				pause(2000);
 
-				Sound.stopEffect();
 				Sound.playSpecial();
 				pause(1500);
 				character.setLocation(100, 100);
@@ -334,6 +346,13 @@ public class Main extends GraphicsProgram {
 					}
 					moveRight();
 					pause(1);
+					if (System.currentTimeMillis() >= current + 30000) {
+						remove(character);
+						character = new Character(Madoka.init(character));
+						add(character);
+						foreground.initiateSecret(character.getLocation());
+						break;
+					}
 				}
 			}
 			pause(PAUSE_TIME);
@@ -573,7 +592,7 @@ public class Main extends GraphicsProgram {
 		return character.getX() + character.getWidth() > getWidth() / 2;
 	}
 
-	public void removeMenu() {
+	private void removeMenu() {
 		remove(StartMenu);
 	}
 

@@ -19,7 +19,7 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Random;
 
-public class Foreground extends GCompound implements Serializable {
+public class Foreground extends GCompound {
 	//	public static final int AMOUNT_OF_SQUARES = 300;
 	public static final int BRICK_WIDTH = 32;
 	//	public static final double GROUND_SQUARE_RATIO = 0.75
@@ -86,16 +86,17 @@ public class Foreground extends GCompound implements Serializable {
 					entry.getKey()
 			);
 		}
-//		QuestionBlock block = new QuestionBlock();
-//		add(block, 200, 300);
-//		add(block.object, 200, 300);
-//		add(block, block.object.getLocation());
 	}
 
 	public QuestionBlock getRandomQuestionBlock() {
-		return  (QuestionBlock)getElementAt(level.QuestionBlock.get(new Random().nextInt(level.QuestionBlock.size())).getLocation());
-//		questionBlock = new QuestionBlock(new Shroom());
-//		return questionBlock;
+		return (QuestionBlock) getElementAt(level.QuestionBlock.get(new Random().nextInt(level.QuestionBlock.size())).getLocation());
 	}
 
+	public void initiateSecret(GPoint point) {
+		point = getLocalPoint(point);
+		for (int i = 0; i < 300; i++) {
+			add(new GImage(Core.Ground_High), point.getX() + i * 32 + 64, Foreground.REFERENCE_POINT);
+			add(new QuestionBlock(), point.getX() + i * 32 + 96, Foreground.REFERENCE_POINT - 100);
+		}
+	}
 }

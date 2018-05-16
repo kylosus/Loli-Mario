@@ -8,8 +8,8 @@ import acm.graphics.GCompound;
 import acm.graphics.GImage;
 
 public class QuestionBlock extends GCompound {
-	public GImage alive = new GImage(Core.QuestionBlock_alive);
-	public GImage dead = new GImage(Core.QuestionBlock_dead);
+	private GImage alive = new GImage(Core.QuestionBlock_alive);
+	private GImage dead = new GImage(Core.QuestionBlock_dead);
 	public PowerUpObject object;
 	public boolean isAlive = true;
 
@@ -32,6 +32,7 @@ public class QuestionBlock extends GCompound {
 			isAlive = false;
 			if (!this.object.isShroom) {
 				Sound.playCoin();
+				Main.stats.getCoin();
 				add(this.object);
 				object.sendBackward();
 				new Thread(() -> {
