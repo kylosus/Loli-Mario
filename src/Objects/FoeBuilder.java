@@ -11,6 +11,7 @@ import acm.graphics.GPoint;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+@Deprecated
 public class FoeBuilder extends GCompound {
 
 	private ArrayList<Foe> Foes = new ArrayList<>();
