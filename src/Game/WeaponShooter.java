@@ -1,15 +1,14 @@
 package Game;
 
-import Game.Main;
 import acm.graphics.GImage;
 import acm.graphics.GPoint;
 import acm.program.GraphicsProgram;
 
 public class WeaponShooter extends GraphicsProgram implements Runnable {
 
-	private static GImage weapon;
+	private GImage weapon;
 
-	public WeaponShooter(GImage weapon) {
+	WeaponShooter(GImage weapon) {
 		this.weapon = weapon;
 	}
 
@@ -25,7 +24,7 @@ public class WeaponShooter extends GraphicsProgram implements Runnable {
 		Main.hasWeaponCrashed = true;
 	}
 
-	private static boolean hasCrashed() {
+	private boolean hasCrashed() {
 		return (Main.foreground.contains(weapon.getX() + weapon.getWidth(), weapon.getY()));
 	}
 }

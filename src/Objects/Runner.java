@@ -2,21 +2,29 @@ package Objects;
 
 import Builders.Foreground;
 import Game.Main;
-import Game.MoveBlock;
 import acm.graphics.GObject;
 import acm.program.GraphicsProgram;
 
 public class Runner extends GraphicsProgram implements Runnable {
 	private GObject object;
+	private Foe foe;
+	private PowerUpObject puo;
 	private Foreground ground;
 	private boolean isDead = false;
 	private boolean right = true;
 	private boolean left = false;
 
 
-	public Runner(GObject object, Foreground ground) {
+	Runner(Foe object, Foreground ground) {
 		this.object = object;
 		this.ground = ground;
+		foe = object;
+	}
+
+	public Runner(PowerUpObject object, Foreground ground) {
+		this.object = object;
+		this.ground = ground;
+		puo = object;
 	}
 
 	@Override
@@ -60,11 +68,16 @@ public class Runner extends GraphicsProgram implements Runnable {
 		return (ground.contains(object.getX() + object.getWidth() / 2, object.getY() + object.getHeight() + 1));
 	}
 
-	public boolean isDownCollision() {
+	private boolean isDownCollision() {
 		return (ground.contains(object.getX() + object.getWidth() / 2, object.getY() + object.getHeight() / 2));
 	}
 
 	public void kill() {
 		isDead = true;
+		if (foe != null) {
+			Main.stats.increaseScoreBy(foe.score.score);
+		} else if (puo != null) {
+			Main.stats.increaseScoreBy(puo.score.score);
+		}
 	}
 }

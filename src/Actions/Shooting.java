@@ -1,6 +1,7 @@
 package Actions;
 
-import acm.program.*;
+
+import acm.program.GraphicsProgram;
 
 public class Shooting extends GraphicsProgram {
 	public State state;

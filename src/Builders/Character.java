@@ -6,8 +6,6 @@ import Characters.Weapon;
 import acm.graphics.GCompound;
 import acm.graphics.GImage;
 
-import java.io.Serializable;
-
 public class Character extends GCompound {
 	private Character character;
 	private static GImage current;
@@ -67,19 +65,12 @@ public class Character extends GCompound {
 	}
 
 	public void setRunningForward() {
-//		remove(current);
 		current.setImage(this.running.state.forward.getImage());
-//		add(current);
 	}
 
 	public void setRunningBackward() {
 		current.setImage(this.running.state.backward.getImage());
-
 	}
-
-//	public void setCurrent(GImage image) {
-//		current = image;
-//	}
 
 	public void setJumpingForward() {
 		current.setImage(this.jumping.state.forward.getImage());

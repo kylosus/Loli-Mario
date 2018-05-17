@@ -1,12 +1,12 @@
 package Objects;
 
 import Builders.Core;
-import Builders.Foreground;
 import Game.Main;
 import Game.Sound;
 import acm.graphics.GCompound;
 import acm.graphics.GImage;
 
+@SuppressWarnings("unused")
 public class QuestionBlock extends GCompound {
 	private GImage alive = new GImage(Core.QuestionBlock_alive);
 	private GImage dead = new GImage(Core.QuestionBlock_dead);
@@ -27,7 +27,7 @@ public class QuestionBlock extends GCompound {
 		this.object = new PowerUpObject(image);
 	}
 
-	public PowerUpObject moveObject() {
+	public void moveObject() {
 		if (isAlive) {
 			isAlive = false;
 			if (!this.object.isShroom) {
@@ -47,22 +47,15 @@ public class QuestionBlock extends GCompound {
 					remove(this.object);
 				}).start();
 			} else {
-//				Sound.playCoin();
-//				object.sendToFront();
-//				System.out.println("Object started");
 				new Thread(() -> {
 					for (int i = (int)object.getHeight(); i != 0; i--) {
 						object.move(0, -1);
 						pause(10);
 					}
 				}).start();
-//				pause(10 * object.getHeight());
-//				new Thread(new Runner(object, Main.foreground)).start();
 			}
 			this.alive.setImage(dead.getImage());
-			return object;
 		}
-		return null;
 	}
 
 	public void convertToShroom() {

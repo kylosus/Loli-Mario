@@ -4,26 +4,25 @@ import acm.graphics.GCompound;
 import acm.graphics.GImage;
 
 public class PowerUpObject extends GCompound {
-	public GImage image;
-	public Score score;
-	public boolean isShroom = false;
-	public boolean hasDied = false;
+	GImage image;
+	Score score;
+	boolean isShroom = false;
+	private boolean hasDied = false;
 	public Runner runner;
 
-	public PowerUpObject(String image, int score) {
+	PowerUpObject(String image, int score) {
 		this.image = new GImage(image);
 		this.score = new Score(score);
 		add(this.image);
 	}
 
-	public PowerUpObject(String image) {
-//		this.shroom = new Shroom();
+	PowerUpObject(String image) {
+		this.image = new GImage(image);
 		isShroom = true;
 		this.score = new Score(1000);
-//		add(this.shroom);
 	}
 
-	public int die() {
+	public void die() {
 		if (!hasDied) {
 			remove(image);
 			hasDied = true;
@@ -36,6 +35,5 @@ public class PowerUpObject extends GCompound {
 				remove(score);
 			}).start();
 		}
-		return this.score.score;
 	}
 }

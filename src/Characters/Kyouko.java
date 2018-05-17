@@ -4,9 +4,12 @@ import acm.graphics.*;
 
 import Actions.*;
 
+/**
+ * Future unimplemented class
+ */
 public class Kyouko extends Character {
 
-	public Kyouko() { // Experimental
+	public Kyouko() {
 		running = new Running();
 		jumping = new Jumping();
 		still = new Still();

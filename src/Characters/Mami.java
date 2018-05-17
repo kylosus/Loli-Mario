@@ -11,6 +11,7 @@ public class Mami extends Character {
 		jumping = new Jumping();
 		still = new Still();
 		name = "Tomoe Mami";
+		age = "15";
 		Onscreen = new GImage("Images/Marios/Mami/MamiStandStillForward.gif");
 		this.Large = new GImage("Images/Marios/Mami/MamiLarge.gif");
 		this.still.state.forward = new GImage("Images/Marios/Mami/MamiStandStillForward.gif");
@@ -22,6 +23,7 @@ public class Mami extends Character {
 		this.shooting.state.forward = new GImage("Images/Marios/Mami/MamiShootForward.gif");
 		this.weapon.forward = new GImage("Images/Marios/Mami/WeaponForward.png");
 		this.weapon.StartPoint = new GPoint(90,33);
+		weapon.name = "Percussion-lock Muskets";
 	}
 
 }

@@ -3,22 +3,25 @@ package Builders;
 import acm.graphics.GCompound;
 import acm.graphics.GImage;
 
-public class Steps extends GCompound {
+class Steps extends GCompound {
 
-	private static String step = "Images/Background/Block.png";
+	private static String step = Core.Step;
 	private static final double stepWidth = 32;
 
-	public Steps(int amountOfSteps) {
+	/**
+	 *
+	 * @param amountOfSteps Positive values face rightward, negative values face leftward
+	 */
+	Steps(int amountOfSteps) {
 
 		if (amountOfSteps < 0) {
 			reverse(-amountOfSteps);
 		} else {
-			contruct(amountOfSteps);
+			construct(amountOfSteps);
 		}
 	}
 
-
-	private void contruct(int amountOfSteps) {
+	private void construct(int amountOfSteps) {
 		double dx, dy = 0;
 		int amountOfSteps2BecauseImLazyChangeThisNameLater = amountOfSteps;
 		for (int i1 = 0; i1 < amountOfSteps; i1++) {
@@ -31,7 +34,6 @@ public class Steps extends GCompound {
 			amountOfSteps2BecauseImLazyChangeThisNameLater--;
 		}
 	}
-
 
 	private void reverse(int amountOfSteps) {
 		double dx, dy = 0;

@@ -2,16 +2,13 @@ package Objects;
 
 import Builders.Foreground;
 import Game.Main;
-import Levels.Level;
-import Objects.Foe;
-import Objects.Goomba;
 import acm.graphics.GCompound;
 import acm.graphics.GPoint;
-
 import java.util.ArrayList;
 import java.util.Iterator;
 
 @Deprecated
+@SuppressWarnings("all")
 public class FoeBuilder extends GCompound {
 
 	private ArrayList<Foe> Foes = new ArrayList<>();
@@ -26,28 +23,24 @@ public class FoeBuilder extends GCompound {
 			add(iterator.next(), dx, 100);
 			dx += 100;
 		}
+
+		for (int i = 0; i < 50; i++) {
+			add(new Goomba().init(foreground), dx, 100);
+			dx += 100;
+		}
 	}
 
+	public Foe getObject(Object object) {
 
-//		for (int i = 0; i < 50; i++) {
-//			add(new Goomba().init(foreground), dx, 100);
-//			dx += 100;
-//		}
-//	}
-
-
-	//Deprecated
-//	public Foe getObject(Object object) {
-//
-//		Foe foe;
-//		while (iterator.hasNext()) {
-//			foe = iterator.next();
-//			if (object.equals(foe)) {
-//				return foe;
-//			}
-//		}
-//		return null;
-//	}
+		Foe foe;
+		while (iterator.hasNext()) {
+			foe = iterator.next();
+			if (object.equals(foe)) {
+				return foe;
+			}
+		}
+		return null;
+	}
 
 	public Foe getObjectAt(double x, double y) {
 		return (Foe) (getElementAt(x, y));

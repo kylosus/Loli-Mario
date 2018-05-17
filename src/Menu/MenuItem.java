@@ -13,10 +13,9 @@ public class MenuItem extends GCompound {
 	private GImage Onscreen;
 	private String regular;
 	private String hovered;
-	private String text;
 	private Callable<Void> clickMethod;
 
-	public MenuItem(String regular, String hovered, Callable<Void> clickMethod) {
+	MenuItem(String regular, String hovered, Callable<Void> clickMethod) {
 		this.regular = regular;
 		this.hovered = hovered;
 		Onscreen = new GImage(this.regular);
@@ -25,6 +24,7 @@ public class MenuItem extends GCompound {
 		this.clickMethod = clickMethod;
 	}
 
+	@SuppressWarnings("unused")
 	public MenuItem(String regular, String hovered, String text) {
 		this.regular = regular;
 		this.hovered = hovered;
@@ -40,7 +40,7 @@ public class MenuItem extends GCompound {
 		addListeners();
 	}
 
-	public MenuItem(String regular, String hovered, String text, Callable<Void> clickMethod) {
+	MenuItem(String regular, String hovered, String text, Callable<Void> clickMethod) {
 		this.regular = regular;
 		this.hovered = hovered;
 		Onscreen = new GImage(this.regular);
@@ -56,7 +56,7 @@ public class MenuItem extends GCompound {
 		addListeners();
 	}
 
-	public void addListeners() {
+	private void addListeners() {
 		Onscreen.addMouseListener(new MouseListener() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -93,5 +93,16 @@ public class MenuItem extends GCompound {
 				Sound.playHover();
 			}
 		});
+	}
+
+	void setClickMethod(Callable<Void> clickMethod) {
+		System.out.println("Placeholder");
+		this.clickMethod = clickMethod;
+	}
+
+	@Deprecated
+	@SuppressWarnings("all")
+	void setText(String text) {
+		String text1 = text;
 	}
 }

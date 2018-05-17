@@ -11,6 +11,7 @@ public class Homura extends Character {
 		jumping = new Jumping();
 		still = new Still();
 		name = "Akemi Homura";
+		age = "Unknown. Appears 14";
 		this.Large = new GImage("Images/Marios/Homura/HomuraLarge.gif");
 		Onscreen = new GImage("Images/Marios/Homura/HomuraStandStillForward.gif");
 		this.still.state.forward = new GImage("Images/Marios/Homura/HomuraStandStillForward.gif");
@@ -24,6 +25,7 @@ public class Homura extends Character {
 		this.weapon.forward = new GImage("Images/Marios/Homura/Weapon.png");
 		this.weapon.backward = new GImage("Images/Marios/Homura/Weapon.png");
 		this.weapon.StartPoint = new GPoint(90, 33);
+		this.weapon.name = "Special ability";
 	}
 
 }

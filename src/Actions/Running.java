@@ -1,6 +1,6 @@
 package Actions;
 
-import acm.program.*;
+import acm.program.GraphicsProgram;
 
 public class Running extends GraphicsProgram {
 	public State state;

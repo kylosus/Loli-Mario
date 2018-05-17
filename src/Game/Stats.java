@@ -11,11 +11,13 @@ public class Stats extends GCompound {
 	private GLabel SCORE;
 	private GLabel COINS;
 	private GLabel WORLD;
+	private GLabel LIVES;
 	private GLabel TIME;
 	private static Font font;
 	private ScoreItem score;
 	private ScoreItem coins;
 	private ScoreItem world;
+	private ScoreItem lives;
 	private ScoreItem time;
 
 	static {
@@ -27,23 +29,25 @@ public class Stats extends GCompound {
 		font = font.deriveFont(24f);
 	}
 
-	public Stats(double canvasWidth, double canvasHeight) {
+	Stats(double canvasWidth, double canvasHeight) {
 		setLabels(canvasWidth);
 		setScoreItems();
 		add(score);
 		add(score, SCORE.getX() + (SCORE.getWidth() - score.getWidth()) / 2, SCORE.getY() + SCORE.getHeight());
 		add(coins, COINS.getX(), COINS.getY() + COINS.getHeight());
 		add(world, WORLD.getX(), WORLD.getY() + WORLD.getHeight());
+		add(lives);
 		add(time, TIME.getX(), TIME.getY() + TIME.getHeight());
 		setLabel(SCORE, score);
 		setLabel(COINS, coins);
 		setLabel(WORLD, world);
+		setLabel(LIVES, lives);
 		setLabel(TIME, time);
 	}
 
 
 	private void setLabels(double canvasWidth) {
-		double margin = canvasWidth / 4 + 20;
+		double margin = canvasWidth / 5 + 20;
 		SCORE = new GLabel("Score", 20, 0);
 		SCORE.setFont(font);
 		add(SCORE);
@@ -55,7 +59,11 @@ public class Stats extends GCompound {
 		WORLD.setFont(font);
 		WORLD.setLocation(WORLD.getX() - WORLD.getWidth(), 0);
 		add(WORLD);
-		TIME = new GLabel("Time", WORLD.getX() + WORLD.getWidth() + margin, 0);
+		LIVES = new GLabel("Lives", WORLD.getX() + WORLD.getWidth() + margin, 0);
+		LIVES.setFont(font);
+		LIVES.setLocation(LIVES.getX() - LIVES.getWidth(), 0);
+		add(LIVES);
+		TIME = new GLabel("Time", LIVES.getX() + LIVES.getWidth() + margin, 0);
 		TIME.setFont(font);
 		TIME.setLocation(TIME.getX() - TIME.getWidth(), 0);
 		add(TIME);
@@ -65,6 +73,7 @@ public class Stats extends GCompound {
 		score = new ScoreItem(font);
 		coins = new ScoreItem(font);
 		world = new ScoreItem(font, 1);
+		lives = new ScoreItem(font, 3);
 		time = new ScoreItem(font, 300);
 		time.startTimer();
 	}
@@ -77,11 +86,26 @@ public class Stats extends GCompound {
 		coins.iterateOnce();
 		score.iterateBy(500);
 		setLabel(SCORE, score);
-//		setLabel(COINS, coins);
+		setLabel(COINS, coins);
+	}
+
+	public void decreaseLives() {
+		lives.iterateBy(-1);
+		setLabel(LIVES, lives);
+	}
+
+	public void changeWorld(int world) {
+		this.world.setValue(world);
+		setLabel(WORLD, this.world);
+	}
+
+	public void increaseScoreBy(int value) {
+		this.score.iterateBy(value);
+		setLabel(SCORE, score);
 	}
 
 
-	public void setWhite() {
+	void setWhite() {
 		SCORE.setColor(Color.WHITE);
 		COINS.setColor(Color.WHITE);
 		WORLD.setColor(Color.WHITE);
@@ -89,6 +113,7 @@ public class Stats extends GCompound {
 		score.setColor(Color.WHITE);
 		coins.setColor(Color.WHITE);
 		world.setColor(Color.WHITE);
+		lives.setColor(Color.WHITE);
 		time.setColor(Color.WHITE);
 	}
 }

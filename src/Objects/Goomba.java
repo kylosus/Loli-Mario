@@ -4,6 +4,7 @@ import Builders.Core;
 import Builders.Foreground;
 import acm.graphics.GImage;
 
+@SuppressWarnings("unused")
 public class Goomba extends Foe {
 
 	public Goomba(Foreground foreground) {

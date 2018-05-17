@@ -1,37 +1,27 @@
 package Builders;
 
-import Builders.Core;
-import Game.Main;
 import Levels.Level;
 import Levels.Level_1;
-import Objects.FoeBuilder;
-import Objects.Goomba;
 import Objects.QuestionBlock;
-import Objects.Shroom;
 import acm.graphics.GCompound;
 import acm.graphics.GImage;
 import acm.graphics.GPoint;
-
-import java.io.FileOutputStream;
-import java.io.ObjectOutputStream;
-import java.io.Serializable;
-import java.util.Iterator;
 import java.util.Map;
 import java.util.Random;
 
 public class Foreground extends GCompound {
-	//	public static final int AMOUNT_OF_SQUARES = 300;
-	public static final int BRICK_WIDTH = 32;
-	//	public static final double GROUND_SQUARE_RATIO = 0.75
+	private static final int BRICK_WIDTH = 32;
 	public static double REFERENCE_POINT;
-	//	private static Random random = new Random();
-	private Level_1 level;
+	private Level level;
 
 	public Foreground(double WIDTH, double HEIGHT) {
 
 		REFERENCE_POINT = HEIGHT - (2 * BRICK_WIDTH);
 
-//		add(Core.SakuraTree);
+//		add(Core.SakuraTree, 9000, 100 - Core.SakuraTree.getHeight());
+		for (int i = 0; i < 5; i++) {
+			add(new GImage(Core.Ground_High), i * BRICK_WIDTH + 9000, 100);
+		}
 
 		level = new Level_1(REFERENCE_POINT, WIDTH, HEIGHT);
 
@@ -49,9 +39,6 @@ public class Foreground extends GCompound {
 				}
 				dy += Level.Brick_Width;
 			}
-
-			x = 0;
-			y = 0;
 
 			for (Map.Entry<GPoint, Integer> entry : level.Ground_High.entrySet()) {
 				x = entry.getKey().getX();
@@ -88,11 +75,17 @@ public class Foreground extends GCompound {
 		}
 	}
 
+	/**
+	 *
+	 * @return random Question Block
+	 */
 	public QuestionBlock getRandomQuestionBlock() {
 		return (QuestionBlock) getElementAt(level.QuestionBlock.get(new Random().nextInt(level.QuestionBlock.size())).getLocation());
 	}
 
+	// Initiates secret level
 	public void initiateSecret(GPoint point) {
+		add(new GImage("Images/Special/waitwhat.png"), 14000, 200);
 		point = getLocalPoint(point);
 		for (int i = 0; i < 300; i++) {
 			add(new GImage(Core.Ground_High), point.getX() + i * 32 + 64, Foreground.REFERENCE_POINT);

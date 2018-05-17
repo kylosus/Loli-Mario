@@ -7,18 +7,12 @@ import acm.graphics.GCompound;
 import acm.graphics.GImage;
 import acm.graphics.GLabel;
 
-import java.util.concurrent.Callable;
-
 public class StartMenu extends GCompound {
 	private double WIDTH;
 	private double HEIGHT;
 	private final double REFERENCE_POINT_Y = 75;
-	private final double REFERENCE_POINT_X = 75;
-	public static String font = "sans-24";
+	static String font = "sans-24";
 	private GImage Large = Main.character.Large;
-	private GImage background = Core.Menu_Background;
-	private GImage Left_Bar = Core.Menu_Left_Bar;
-	private GImage Right_Bar = Core.Menu_Right_Bar;
 	private GLabel name;
 	private GLabel age;
 	private GLabel weapon;
@@ -33,36 +27,38 @@ public class StartMenu extends GCompound {
 		return null;
 	});
 
-	private MenuItem Play_Button = new MenuItem(Core.Menu_Button_regular, Core.Menu_Button_hovered, "Play", new Callable<Void>() {
-		@Override
-		public Void call() throws Exception {
-//			remove(Game.Main.Menu.StartMenu);
-			Main.character.setLocation(WIDTH / 3 - Main.character.getWidth(), Main.character.getHeight());
-			Main.isInMenu = false;
-			return null;
-		}
-	});
-
-	private MenuItem Map_Button = new MenuItem(Core.Menu_Button_regular, Core.Menu_Button_hovered, "Music (not available yet)");
-	private MenuItem Exit_Button = new MenuItem(Core.Menu_Button_regular, Core.Menu_Button_hovered, "Exit", () -> {
-		System.exit(0);
+	private MenuItem Music_Button = new MenuItem(Core.Menu_Button_regular, Core.Menu_Button_hovered, "Music", () -> {
+		switchMusic();
 		return null;
 	});
 
 	public StartMenu(double WIDTH, double HEIGHT) {
 		this.WIDTH = WIDTH;
 		this.HEIGHT = HEIGHT;
+		GImage background = Core.Menu_Background;
 		add(background);
-		add(Left_Bar, -Left_Bar.getWidth() * 2 / 3, 0);
-		add(Right_Bar, WIDTH * 2 / 3, 0);
+		GImage left_Bar = Core.Menu_Left_Bar;
+		add(left_Bar, -left_Bar.getWidth() * 2 / 3, 0);
+		GImage right_Bar = Core.Menu_Right_Bar;
+		add(right_Bar, WIDTH * 2 / 3, 0);
 		add(
 				Large,
 				(WIDTH - Main.character.Large.getWidth()) / 2,
 				0
 		);
-		add(Play_Button, REFERENCE_POINT_X, REFERENCE_POINT_Y);
-		add(Map_Button, REFERENCE_POINT_X, Play_Button.getY() + Play_Button.getHeight());
-		add(Exit_Button, REFERENCE_POINT_X, Map_Button.getY() + Map_Button.getHeight());
+		MenuItem play_Button = new MenuItem(Core.Menu_Button_regular, Core.Menu_Button_hovered, "Play", () -> {
+			Main.character.setLocation(WIDTH / 3 - Main.character.getWidth(), Main.character.getHeight());
+			Main.isInMenu = false;
+			return null;
+		});
+		double REFERENCE_POINT_X = 75;
+		add(play_Button, REFERENCE_POINT_X, REFERENCE_POINT_Y);
+		add(Music_Button, REFERENCE_POINT_X, play_Button.getY() + play_Button.getHeight());
+		MenuItem exit_Button = new MenuItem(Core.Menu_Button_regular, Core.Menu_Button_hovered, "Exit", () -> {
+			System.exit(0);
+			return null;
+		});
+		add(exit_Button, REFERENCE_POINT_X, Music_Button.getY() + Music_Button.getHeight());
 		setGLabels();
 		add(name);
 		add(age);
@@ -75,13 +71,13 @@ public class StartMenu extends GCompound {
 
 		add(
 				Left_Button,
-				Left_Bar.getX() + Left_Bar.getWidth(),
+				left_Bar.getX() + left_Bar.getWidth(),
 				HEIGHT / 2 - Left_Button.getHeight() / 2
 		);
 
 		add(
 				Right_Button,
-				Right_Bar.getX() - Right_Button.getWidth(),
+				right_Bar.getX() - Right_Button.getWidth(),
 				HEIGHT / 2 - Left_Button.getHeight() / 2
 		);
 	}
@@ -109,9 +105,50 @@ public class StartMenu extends GCompound {
 		weapon.setFont(age.getFont());
 	}
 
-	public void changeCharacter() {
+	private void changeCharacter() {
 		Main.changeCharacter();
 		reset();
+	}
+
+	private void changeBGM() {
+		Sound.changeBGM();
+	}
+
+	private void switchCharacter() {
+		System.out.println("Switched to music");
+		Left_Button.setClickMethod(() -> {
+			changeBGM();
+			return null;
+		});
+		Right_Button.setClickMethod(() -> {
+			changeBGM();
+			return null;
+		});
+		Music_Button.setClickMethod(() -> {
+			switchMusic();
+			return null;
+		});
+	}
+
+	private void switchMusic() {
+		Large.setImage("Images/note.png");
+		add(
+				Large,
+				(WIDTH - Large.getWidth()) / 2 + 15,
+				(HEIGHT - Large.getHeight()) / 2
+		);
+		Left_Button.setClickMethod(() -> {
+			changeBGM();
+			return null;
+		});
+		Right_Button.setClickMethod(() -> {
+			changeBGM();
+			return null;
+		});
+		Music_Button.setClickMethod(() -> {
+			switchCharacter();
+			return null;
+		});
 	}
 
 	private void reset() {

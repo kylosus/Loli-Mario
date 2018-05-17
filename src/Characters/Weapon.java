@@ -11,7 +11,7 @@ public class Weapon extends GCompound {
 	public GImage backward;
 	public GPoint StartPoint;
 	public double Speed;
-	public GImage Explosion = new GImage("Images/Marios/WeaponExplosion.gif");
+	public static GImage Explosion = new GImage("Images/Marios/WeaponExplosion.gif");
 
 	public Weapon() {}
 }

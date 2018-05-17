@@ -1,10 +1,6 @@
 package Actions;
 
-import acm.graphics.*;
-
-import java.awt.*;
-
-import acm.program.*;
+import acm.graphics.GImage;
 
 public class State {
 	public GImage forward;
